@@ -36,6 +36,16 @@ Users can adjust when and how synthesis happens:
 
 **Default:** Suggest synthesis when three or more sources point to the same pattern.
 
+### Intake Channel
+
+How /check-feedback discovers new feedback:
+
+- **Repo URL** — Which GitHub repo to scan for issues (e.g., `mightytech/my-nla`). This is the repo where feedback is submitted, typically the NLA's own repo.
+- **Label filter** — Only check issues with these labels (e.g., `feedback`, `penny-post`). Optional — by default, all open issues are checked and the AI judges relevance.
+- **State filter** — Which issue states to check. Optional — default is `open`.
+
+**Default:** All open issues on the configured repo, no label filtering. The AI assesses each issue for relevance.
+
 ### Mailbox Location
 
 If the penny post is not at the standard sibling location, or if the user wants to point to a remote mailbox:
@@ -43,7 +53,7 @@ If the penny post is not at the standard sibling location, or if the user wants 
 - **Mailbox repo URL** — For remote access via `gh` CLI
 - **Local path** — If the mailbox is cloned elsewhere
 
-**Default:** Current directory (the penny post repo itself).
+**Default:** `../nla-penny-post/` (sibling directory).
 
 ### Framework Path
 
@@ -78,7 +88,7 @@ Runtime tracing logs the LLM's decisions during work sessions — which document
 
 ## Guidance for the Config Conversation
 
-When users aren't sure what to configure, start with notification patterns — they have the most visible effect on the check-mail experience. Triage preferences are useful after a few triage sessions when the user has opinions about depth and evidence thresholds.
+When users aren't sure what to configure, start with notification patterns — they have the most visible effect on the check-feedback experience. Triage preferences are useful after a few triage sessions when the user has opinions about depth and evidence thresholds.
 
 For first-time users, suggest trying the defaults first and coming back to `/preferences` after they've processed a few letters.
 

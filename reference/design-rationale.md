@@ -77,6 +77,116 @@ The canonical repo is public. Community boxes are readable by anyone. This enabl
 
 The mailbox is designed so others can fork it for their own purposes — feedback channels for their own NLAs, team coordination, inter-NLA communication, general knowledge management. This requires clean separation between domain-specific content (framework feedback norms) and general patterns (letter format, annotation conventions).
 
+### The Penny Post as NLA Extension
+
+The penny post is primarily an extension that other NLAs install, not a standalone
+application users interact with directly. 99% of usage happens from within other NLAs
+via framework-level skills (/check-feedback, /write-letter).
+
+**Why:** Triage requires the context of the receiving NLA. The penny post alone can't
+assess domain-specific feedback — the NLA maintainer can, with full project context loaded.
+Triage naturally happens where the context lives.
+
+**What it affects:** The penny post's scope narrows to: mailbox infrastructure, triage
+conventions (suggested, not enforced), synthesis across boxes, and self-maintenance. The
+active processing moves to the NLA side via framework skills.
+
+**What we rejected:** The penny post as active triage processor (original design). This
+would require either the penny post reading other NLAs' files (cross-project coupling)
+or triaging without context (poor judgment). Neither is acceptable.
+
+### Conventions Over Protocol
+
+The penny post's suggestions — letter format, triage conventions, annotation format — are
+NLA-style conventions: suggested structure with published reasoning, not a rigid protocol.
+The penny post says what it likes to receive and why, but accepts feedback in whatever
+form it arrives.
+
+**Why:** The reader is an LLM that applies judgment, not a parser. Rigid formatting
+constrains communication without improving processing. A well-written freeform letter
+is better than a poorly filled form. This is the same principle already applied to letter
+format, now extended to the entire interaction model.
+
+### NLA Extensions: Technically Explicit, Experientially Native
+
+When one NLA extends another (as penny post extends other NLAs), the integration should be
+explicit in the wiring (docs and skills know about the dependency) but invisible in the user
+experience (the user feels like they're using native capabilities of their own NLA).
+
+**Why:** Users shouldn't context-switch between projects. The NLA they're in is their
+workspace. Extensions add capabilities to that workspace, not destinations outside it.
+
+### Pluggable Intake, Portable Archive
+
+The mailbox is an abstraction with two layers: an intake channel (where feedback arrives)
+and an archive (where processed feedback is stored).
+
+**Intake** is pluggable — GitHub Issues by default, but the architecture supports any
+channel (email, web forms, Jira, Slack, S3, etc.). Config describes where to look; the
+AI handles the mechanics. NLA creators choose channels appropriate for their audience.
+GitHub Issues is the default because it's universal for developers, requires zero
+infrastructure, and closes the feedback loop via issue comments.
+
+**Archive** is `boxes/` in the penny post fork — portable markdown in git. Searchable,
+offline-accessible, synthesizable. The archive is the permanent record; the intake
+channel is ephemeral.
+
+**Why not just boxes/ for everything?** The original design required contributors to fork
+the penny post repo and submit PRs to add letters. This creates friction for casual
+feedback and excludes non-developers entirely. Separating intake from archive means
+anyone can submit through familiar channels; the maintainer imports and processes into
+the permanent archive.
+
+**What we rejected:** Tying the penny post to any single intake mechanism. The conventions
+govern how feedback is processed, not how it arrives.
+
+### Intent-Based Package Installation
+
+NLA packages (like the penny post) ship an `install/` directory containing intent files
+rather than literal text to paste. Each file describes the *intent* of changes needed at
+a specific integration point (CLAUDE.md, skills, etc.). The installing NLA's AI reads
+these intents and synthesizes them into the NLA's existing files — matching its voice,
+structure, and conventions.
+
+**Why intent, not templates?** Templates produce uniform results regardless of context.
+Intent-based installation lets each NLA integrate the package in a way that fits its
+existing structure. Two NLAs installing penny post will have different CLAUDE.md sections
+that accomplish the same thing — tailored integration, not copy-paste.
+
+**Why an install directory, not a single manifest?** Separating intents by integration
+point (one file for CLAUDE.md, one for skills) makes each concern independently diffable
+and independently updatable. When only the skills intent changes, the NLA can re-process
+just that file.
+
+**The install log:** After installation, the NLA records what it did and why — which
+package, which intent, what concrete changes were made. This log is how future updates
+know what came from where, and how uninstalls know what to reverse. It also handles
+overlap: if two packages both need the NLA to know about external data sources, the AI
+integrates it once but logs both packages as the source.
+
+**What we rejected:** Literal text injection (paste this into CLAUDE.md), rigid templates,
+and version-specific migration scripts. All of these fight against the NLA principle that
+the AI applies judgment. Intent-based installation works *with* the AI, not around it.
+
+### Processing Happens Where Context Lives
+
+Triage and synthesis always happen in the receiving NLA's session — never in the penny
+post's session (unless the penny post is processing its own feedback). Each project is
+an NLA: Duet, penny post, nla-framework. Each processes its own feedback within its own
+context.
+
+**Why:** Assessment requires understanding. To decide whether "artifact persistence is a
+missing pattern" is valid framework feedback, you need to understand the framework.
+The penny post can't do that — the framework maintainer can.
+
+**What it affects:** The penny post has no special processing role. It provides conventions
+and infrastructure. Every NLA (including penny post) processes its own feedback using
+the same framework-level skills.
+
+**What we rejected:** Penny post as centralized triage/synthesis engine. Also rejected
+giving penny post a special cross-cutting synthesis role — the simpler rule (processing
+happens where context lives, no exceptions) is both simpler and more correct.
+
 ---
 
 ## Adding Decisions
