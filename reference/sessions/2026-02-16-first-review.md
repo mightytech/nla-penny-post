@@ -320,8 +320,6 @@ The penny post simplifies from three identities (mailbox + conventions + NLA) to
 **What replaced it:**
 - Feedback log in each NLA's `reference/` (already existed from decision #14)
 - GitHub Issue comments as the full triage record
-- `reference/last-checked.md` for session memory
-
 ### 18. No local letter archives needed
 
 Considered whether local archives of triaged letters would help the AI calibrate
@@ -350,6 +348,26 @@ All 12 active docs updated to remove boxes/, mailbox identity, and fork model:
 - `reference/design-rationale.md` — Rewrote structure section
 - `reference/system-status.md` — Updated to reflect simplified architecture
 
+### 19. last-checked.md removed — GitHub issue state is session memory
+
+Open issues are unprocessed, closed issues have been triaged. No separate tracking
+file needed. Removed last-checked.md from the architecture, .gitignore, and
+check-feedback.md. One less concept, one less file.
+
+### 20. Closing the loop with submitters
+
+When `/maintain` resolves a feedback log entry, it should post a follow-up comment
+on the original GitHub Issue so submitters can see when their accepted feedback was
+implemented. Not built yet — added as a note in check-feedback.md for future
+implementation in the `/maintain` skill.
+
+### End-to-end test (second round)
+- /write-letter: drafted and submitted Issue #4 (self-feedback about mailbox elimination)
+- /check-feedback: discovered Issue #4, triaged all 3 items (2 already resolved,
+  1 pending for monitoring), deposited in feedback log, commented triage summary,
+  closed issue
+- Confirmed the simplified flow works without archive step or last-checked tracking
+
 ### NLA writings
 - Added "What NLAs Need Next" section to the-case-for-nlas.md
 - Added "Approaches Worth Learning From" section
@@ -359,23 +377,29 @@ All 12 active docs updated to remove boxes/, mailbox identity, and fork model:
 
 ## State at Close
 
-Architecture simplified. Mailbox eliminated. Penny post is conventions + skills + NLA.
+Architecture simplified. Penny post is conventions + skills + NLA. No mailbox, no
+boxes/, no last-checked tracking. Feedback files live in each NLA. GitHub Issues
+handle intake and session memory (open = unprocessed, closed = triaged).
 
 **What's done:**
 - Core docs reflect the simplified architecture (conventions + skills + NLA)
-- /write-letter and /check-feedback tested end-to-end with real feedback
+- /write-letter and /check-feedback tested end-to-end twice (Issues #1 and #4)
 - Install directory with intent files created
 - Feedback log concept created and working
 - Setup check script built and tested
-- 3 letters sent (2 to framework, 1 self-feedback — triaged and closed)
-- All feedback log and friction log items resolved
+- 4 letters sent (2 to framework, 2 self-feedback — both triaged and closed)
+- All feedback log and friction log items resolved (1 pending: calibration monitoring)
 - Mailbox/boxes concept removed — feedback lives in each NLA
+- last-checked.md removed — GitHub issue state is the tracker
+- Closing-the-loop note added for future /maintain enhancement
 - NLA writings updated with new sections on innovation taxonomy and adoption
+- Tax filing white paper drafted
 
 **What's waiting on the framework:**
 - Issue #1: Create install/ directory for framework package management
 - Issue #2: Add feedback log as sibling to friction log
 - Eventually: /install and /update skills
+- Bootstrap plan: manually point framework AI at open issues + penny post docs
 
 **What's not yet tested:**
 - /synthesize (needs multiple feedback entries)
