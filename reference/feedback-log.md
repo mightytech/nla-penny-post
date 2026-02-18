@@ -15,7 +15,7 @@ Both feed into `/maintain`. Both are queues of actionable items.
 
 **When items are added:**
 - After triaging feedback (via `/check-feedback` or any external feedback tool), accepted
-  items are deposited here with their verdict rationale and a reference to the archived letter.
+  items are deposited here with their verdict rationale and a reference to the source.
 
 **When items are resolved:**
 - During `/maintain` sessions, the maintainer reviews pending items and implements them.
@@ -32,7 +32,7 @@ Both feed into `/maintain`. Both are queues of actionable items.
 ```markdown
 ## [DATE] — [Brief description of the accepted item]
 
-**Source:** [Link to archived letter and item number]
+**Source:** [Link to GitHub Issue or intake item]
 **Verdict:** [Accept / Adapt — and the reasoning]
 **Status:** pending | in-progress | resolved
 
@@ -53,6 +53,56 @@ accepted, Status. Include what you have; don't force what you don't.
 ## Entries
 
 *Entries are added chronologically, newest first.*
+
+## 2026-02-17 — Record mailbox elimination as architectural pattern
+
+**Source:** [Issue #4](https://github.com/mightytech/nla-penny-post/issues/4), Item 1
+**Verdict:** Accept — already implemented
+**Status:** resolved
+**Resolved:** 2026-02-17 — Mailbox eliminated in this session. All docs updated.
+Design rationale captures the reasoning.
+
+---
+
+## 2026-02-17 — "Do we need this at all?" as architectural decision pattern
+
+**Source:** [Issue #4](https://github.com/mightytech/nla-penny-post/issues/4), Item 2
+**Verdict:** Accept as general pattern
+
+**What to do:**
+Note in design rationale or NLA writings that architectural decisions compound —
+structures that were load-bearing before a change may become dead weight after.
+Periodically re-evaluate whether existing structures still serve a purpose.
+
+**Why it was accepted:**
+The mailbox survived the first reframing intact, but the decisions made during that
+reframing (triage NLA-side, synthesis NLA-side) had hollowed out its purpose. It took
+a second session to notice. This is a general pattern worth remembering.
+
+**Status:** resolved
+**Resolved:** 2026-02-17 — Captured in session log (decision #17) and in
+nla-writings/the-case-for-nlas.md (Two Kinds of NLA Innovation section).
+
+---
+
+## 2026-02-17 — Monitor whether feedback log + GitHub Issues suffice for triage calibration
+
+**Source:** [Issue #4](https://github.com/mightytech/nla-penny-post/issues/4), Item 3
+**Verdict:** Accept with caveat — medium confidence, revisit after more triage sessions
+
+**What to do:**
+After several more triage sessions, assess whether the feedback log archive plus
+GitHub Issues provide enough historical context for the AI to calibrate triage
+decisions. If not, consider adding optional local archives of full letter text.
+
+**Why it was accepted:**
+The architecture assumes the feedback log archive ("what was accepted and why") plus
+the original GitHub Issue (retrievable via `gh`) is sufficient. This is untested
+beyond one session. Worth watching.
+
+**Status:** pending
+
+---
 
 ## 2026-02-17 — Add source attribution footer convention to write-letter.md
 
