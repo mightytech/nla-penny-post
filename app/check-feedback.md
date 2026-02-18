@@ -141,6 +141,14 @@ After the human approves (or adjusts) the verdicts:
    continue — the feedback log is the important artifact. Run `lib/check-setup.sh`
    to diagnose permission issues.
 
+**Closing the loop with submitters:** The triage comment tells submitters what was
+decided. Eventually, `/maintain` should also post a follow-up comment when accepted
+items are implemented — "Item 2 was implemented in [description of change]." The
+feedback log entry has the source link, so `/maintain` knows where to post. This
+gives submitters visibility into the full lifecycle: submission → triage → implementation.
+For deferred items, a similar update when the item is eventually revisited. This isn't
+built yet — it's a future addition to the `/maintain` skill.
+
 ---
 
 ## Judgment Calls
