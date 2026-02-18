@@ -59,7 +59,7 @@ Scan the intake channel for new feedback:
   For reading full issue content, use `gh api repos/<owner>/<repo>/issues/<number>`
   (the REST API is more reliable across token types than the GraphQL-based `gh issue view`).
 - **Other channels:** Follow the intake configuration in config.md.
-Read `reference/last-checked.md` (if it exists) to determine what's new vs. already seen.
+Open issues are unprocessed; closed issues have been triaged. No separate tracking needed.
 
 Present what's new in conversational form:
 - How many new items
@@ -140,7 +140,6 @@ After the human approves (or adjusts) the verdicts:
    reasoning. Then close the issue. If this fails due to permission errors, note it and
    continue — the feedback log is the important artifact. Run `lib/check-setup.sh`
    to diagnose permission issues.
-3. **Update last-checked.md** in `reference/` with the current date and what was seen.
 
 ---
 
