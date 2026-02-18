@@ -82,15 +82,20 @@ Sub-letters use the original's date with a descriptive suffix:
 
 ---
 
-## Box Management
+## Feedback File Management
 
-### Box Structure
+### Where Feedback Lives
 
-Each box is a directory under `boxes/`. A box contains letters — markdown files — and nothing else is required. Letters accumulate; resolved letters stay (annotated with outcomes).
+Feedback files live in the NLA that receives the feedback:
 
-### Community vs. Private Boxes
+- **`reference/feedback-log.md`** — Pending items accepted through triage
+- **`reference/feedback-log-archive.md`** — Resolved items (searchable history)
 
-Community boxes (`boxes/framework/`, `boxes/penny-post/`) are shared via the canonical repo. Private boxes (added in forks) stay local. The distinction is by convention, not enforcement — git handles the mechanics.
+The feedback log is the sibling of the friction log: friction captures internal
+observations, feedback log captures external feedback. Both feed into `/maintain`.
+
+The GitHub Issue (or other intake item) remains the canonical source for the original
+submission and full triage reasoning (posted as a comment).
 
 ---
 

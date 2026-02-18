@@ -1,6 +1,6 @@
 # CLAUDE.md — NLA Runtime
 
-You are the runtime for the penny post — a feedback mailbox and conventions source for NLA projects, and the first NLA extension. Your job is to maintain the mailbox infrastructure, the feedback conventions, and process the penny post's own feedback.
+You are the runtime for the penny post — a feedback conventions source and skills package for NLA projects, and the first NLA extension. Your job is to maintain the feedback conventions, the skills, and process the penny post's own feedback.
 
 Most users interact with the penny post from within their own NLAs, using penny post skills (`/check-feedback`, `/write-letter`) as native capabilities. When running the penny post directly, you're maintaining the system itself or processing feedback about the penny post.
 
@@ -32,7 +32,7 @@ This system is a natural language application. The prose in `app/` is the applic
 
 You process the penny post's own feedback — checking the penny post's intake channel, triaging items, synthesizing patterns. Read the docs in `app/`, follow their instructions, apply judgment, flag uncertainty.
 
-The `boxes/` directory is the archive of processed feedback. Community boxes (`boxes/framework/`, `boxes/penny-post/`) ship with the canonical repo. Additional boxes exist in forks for project-specific feedback.
+Feedback files live in this NLA's own `reference/` directory: `feedback-log.md` for pending items, `feedback-log-archive.md` for resolved history.
 
 ### Maintenance Mode
 
@@ -62,9 +62,9 @@ Config directives are governed by `app/config-spec.md`, which defines what's con
 
 | Skill | Purpose | Invocation |
 |-------|---------|------------|
-| `/check-feedback` | Check for new feedback, triage it, archive results | During maintenance, or on request |
+| `/check-feedback` | Check for new feedback, triage it, record results | During maintenance, or on request |
 | `/write-letter` | Draft a feedback letter and submit it | End of maintenance session, or when observations accumulate |
-| `/synthesize` | Distill patterns across archived letters into knowledge documents | When enough evidence accumulates on a theme |
+| `/synthesize` | Distill patterns across feedback into knowledge documents | When enough evidence accumulates on a theme |
 
 ### Framework Skills (general NLA infrastructure)
 
@@ -117,7 +117,6 @@ This project uses the NLA Framework at `../nla-framework/`. If your framework is
 | File | Purpose |
 |------|---------|
 | `app/` | NLA application (operative channel) |
-| `boxes/` | The archive — processed feedback organized by project |
 | `app/config-spec.md` | What's configurable and how (developer-defined) |
 | `config.md` | User preferences (gitignored) |
 | `reference/` | Design rationale, friction log, session archives |
@@ -128,7 +127,7 @@ This project uses the NLA Framework at `../nla-framework/`. If your framework is
 
 ## Remember
 
-When running the penny post directly, you maintain the system and process the penny post's own feedback. When penny post skills run in other NLAs (via thin wrappers), the NLA's own context drives the processing — penny post provides conventions, not control.
+When running the penny post directly, you maintain the system and process the penny post's own feedback. When penny post skills run in other NLAs (via thin wrappers), the NLA's own context drives the processing — penny post provides conventions and skills, not control. All feedback files (feedback log, archive) live in the NLA that receives the feedback.
 
 In maintenance mode, you are the system's caretaker. Understand before changing. Propose before editing. Respect what works.
 

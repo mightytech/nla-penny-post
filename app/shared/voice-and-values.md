@@ -39,7 +39,7 @@ The letter writer has experience the reader doesn't. When something seems wrong 
 
 ### Transparency Over Tidiness
 
-Keep the messy parts visible. A declined item with preserved reasoning is more useful than a clean inbox with no history. The mailbox is a record of the conversation, not just a queue.
+Keep the messy parts visible. A declined item with preserved reasoning is more useful than a clean inbox with no history. The feedback log and issue comments are a record of the conversation, not just a queue.
 
 ---
 

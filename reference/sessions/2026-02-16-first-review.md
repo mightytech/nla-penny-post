@@ -296,18 +296,81 @@ All core docs were rewritten or created to reflect the architectural reframing:
 ### Other
 - Added "Natively Multilingual" section to `../nla-writings/the-case-for-nlas.md`
 
+### 17. Mailbox elimination — feedback files live in the NLA
+
+The `boxes/` directory and the entire mailbox concept are removed. Each NLA stores its
+own feedback files in its own `reference/` directory: `feedback-log.md` for pending items,
+`feedback-log-archive.md` for resolved history. The GitHub Issue remains the canonical
+source for the original submission and full triage reasoning.
+
+**Rationale:** Triage happens NLA-side (decision #2). Synthesis happens NLA-side
+(decision #8). So why does the archive live somewhere else? The feedback log and its
+archive are the NLA's record. No separate archive step, no fork model, no boxes/.
+
+The penny post simplifies from three identities (mailbox + conventions + NLA) to two
+(conventions/skills + NLA). It's a package you install, not a place you go.
+
+**What was removed:**
+- `boxes/` directory concept (existing files kept as historical artifacts)
+- Fork model for distributing archived letters
+- Per-box last-checked.md
+- Mailbox Location config
+- Archive step in check-feedback flow
+
+**What replaced it:**
+- Feedback log in each NLA's `reference/` (already existed from decision #14)
+- GitHub Issue comments as the full triage record
+- `reference/last-checked.md` for session memory
+
+### 18. No local letter archives needed
+
+Considered whether local archives of triaged letters would help the AI calibrate
+future triage decisions. Concluded that the feedback log archive (`feedback-log-archive.md`)
+plus GitHub Issue comments provide sufficient history. The feedback log archive shows
+categorization patterns ("what was accepted and why"). The GitHub Issues have the
+original text when full context is needed.
+
+Local archives are not needed by default. The architecture supports adding them
+optionally if a specific use case demands offline access to full letter text.
+
+## Changes Implemented (Continuation — 2026-02-17)
+
+### Mailbox elimination
+All 12 active docs updated to remove boxes/, mailbox identity, and fork model:
+- `app/overview.md` — Two identities, feedback-log-based flow, "Where Feedback Lives" section
+- `app/check-feedback.md` — Simplified record step (feedback log + issue comment)
+- `app/synthesize.md` — Sources are feedback log entries and GitHub Issues
+- `app/config-spec.md` — "Penny Post Location" replaces "Mailbox Location"
+- `app/shared/common-patterns.md` — "Feedback File Management" replaces "Box Management"
+- `app/shared/voice-and-values.md` — Minor wording update
+- `CLAUDE.md` — Removed mailbox identity and boxes/ references
+- `README.md` — Removed mailbox section, simplified setup and flow
+- `install/CLAUDE-intent.md` — "Feedback File Locations" replaces "Mailbox Awareness"
+- `install/install.md` — Updated package description
+- `reference/design-rationale.md` — Rewrote structure section
+- `reference/system-status.md` — Updated to reflect simplified architecture
+
+### NLA writings
+- Added "What NLAs Need Next" section to the-case-for-nlas.md
+- Added "Approaches Worth Learning From" section
+- Added "Two Kinds of NLA Innovation" section (old ideas made cheap vs. new ideas from new paradigm)
+- Added "The Adoption Question" section (framework recognizes emerging patterns, not invents)
+- Created `nla-whitepapers/nla-tax-filing-1040ez.md` — white paper draft on hybrid model tax filing
+
 ## State at Close
 
-Architecture reframed, all docs rewritten, end-to-end tested, feedback loop working.
+Architecture simplified. Mailbox eliminated. Penny post is conventions + skills + NLA.
 
 **What's done:**
-- Core docs reflect the new architecture (extension + mailbox + conventions + NLA)
+- Core docs reflect the simplified architecture (conventions + skills + NLA)
 - /write-letter and /check-feedback tested end-to-end with real feedback
 - Install directory with intent files created
 - Feedback log concept created and working
 - Setup check script built and tested
 - 3 letters sent (2 to framework, 1 self-feedback — triaged and closed)
 - All feedback log and friction log items resolved
+- Mailbox/boxes concept removed — feedback lives in each NLA
+- NLA writings updated with new sections on innovation taxonomy and adoption
 
 **What's waiting on the framework:**
 - Issue #1: Create install/ directory for framework package management
@@ -315,6 +378,6 @@ Architecture reframed, all docs rewritten, end-to-end tested, feedback loop work
 - Eventually: /install and /update skills
 
 **What's not yet tested:**
-- /synthesize (needs multiple letters)
+- /synthesize (needs multiple feedback entries)
 - The full install flow on another NLA (manual setup works, automated /install doesn't exist yet)
 - check-feedback with external feedback (all testing was self-feedback)

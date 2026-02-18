@@ -7,10 +7,11 @@ An `/install` or `/update` skill reads these files and applies them to the targe
 
 ## What This Package Is
 
-The penny post is a feedback mailbox for NLA projects. It gives your NLA the ability to
-receive structured feedback from other NLAs and humans, and to send feedback to other
-projects. It's the first NLA extension — a capability that other NLAs install and use
-from within their own sessions.
+The penny post is a feedback conventions and skills package for NLA projects. It gives
+your NLA the ability to receive structured feedback from other NLAs and humans, and to
+send feedback to other projects. It's the first NLA extension — a capability that other
+NLAs install and use from within their own sessions. All feedback files live in your
+NLA, not in the penny post.
 
 ## Prerequisites
 

@@ -1,28 +1,29 @@
 # Synthesize
 
-Distill patterns across multiple letters in the archive into focused knowledge documents.
+Distill patterns across feedback into focused knowledge documents.
 
 ---
 
 ## Purpose
 
-Synthesis creates the institutional memory layer. When multiple letters in this NLA's
-feedback archive — from different sources, different contexts, different times — point
-to the same pattern, synthesis extracts and crystallizes that pattern into a standalone
-document that's easier to reference than reading every original letter.
+Synthesis creates the institutional memory layer. When feedback from different sources,
+different contexts, different times points to the same pattern, synthesis extracts and
+crystallizes that pattern into a standalone document that's easier to reference than
+reading every original source.
 
 Like triage, synthesis happens in the NLA's own session, where the AI has full project
 context to assess whether a pattern is meaningful.
 
 ## Input
 
-- A set of letters or items to synthesize across (can be specified or discovered)
+- A set of feedback log entries or intake items to synthesize across (can be specified
+  or discovered)
 - A theme or question to synthesize around ("what do we know about persistence?",
   "what patterns have emerged around startup?")
 
 ## Output
 
-- A synthesis document (markdown file) capturing the cross-letter pattern
+- A synthesis document (markdown file) capturing the cross-source pattern
 - References back to every contributing source
 - Confidence assessment based on breadth and depth of evidence
 
@@ -45,10 +46,11 @@ Before running this task, read:
 
 ### Step 1: Gather Sources
 
-Identify all relevant letters and items in the archive:
-- Letters explicitly provided by the user
-- Letters discovered through theme search across boxes
-- Previous synthesis documents on related topics (to update rather than duplicate)
+Identify all relevant sources:
+- Feedback log entries (pending and archived) on the theme
+- Original intake items (GitHub Issues, etc.) for full context when needed
+- Friction log entries on related topics
+- Previous synthesis documents (to update rather than duplicate)
 
 ### Step 2: Extract and Compare
 
@@ -74,8 +76,8 @@ Write the synthesis document following the output spec format:
 
 ### Step 4: Cross-Reference
 
-- Link back to every contributing source
-- Annotate the original letters noting they've been synthesized
+- Link back to every contributing source (feedback log entries, GitHub Issues, friction log entries)
+- Note in the feedback log entries that they've been synthesized
   ("This item contributed to synthesis: [link]")
 - If updating an existing synthesis, note what changed and why
 
@@ -103,17 +105,16 @@ synthesis. If it's just a shorter version of one letter, it's a summary.
 
 ### Where Synthesis Documents Live
 
-Synthesis documents live in the box they're most relevant to. A synthesis of framework
-feedback lives in `boxes/framework/`. Cross-box synthesis lives in whichever box makes
-most sense, with cross-references.
+Synthesis documents live in the NLA's `reference/` directory alongside the feedback
+and friction logs they draw from.
 
-Naming: `synthesis-[topic]-[date].md` — e.g., `synthesis-persistence-patterns-2026-03-01.md`.
+Naming: `synthesis-[topic]-[date].md` — e.g., `reference/synthesis-persistence-patterns-2026-03-01.md`.
 
 ---
 
 ## Customization
 
-NLA creators can customize synthesis in their penny post fork:
+NLA creators can customize synthesis:
 
 - **Synthesis thresholds** — adjust how much evidence is needed before suggesting
   synthesis via config.md
@@ -122,6 +123,6 @@ NLA creators can customize synthesis in their penny post fork:
 
 ---
 
-*Synthesis is the highest-value output of the feedback archive — it turns accumulated
-letters into institutional knowledge. Don't rush it; don't force it before there's
+*Synthesis is the highest-value output of accumulated feedback — it turns individual
+observations into institutional knowledge. Don't rush it; don't force it before there's
 enough material.*

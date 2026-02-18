@@ -46,12 +46,11 @@ How /check-feedback discovers new feedback:
 
 **Default:** All open issues on the configured repo, no label filtering. The AI assesses each issue for relevance.
 
-### Mailbox Location
+### Penny Post Location
 
-If the penny post is not at the standard sibling location, or if the user wants to point to a remote mailbox:
+If the penny post is not at the standard sibling location:
 
-- **Mailbox repo URL** — For remote access via `gh` CLI
-- **Local path** — If the mailbox is cloned elsewhere
+- **Local path** — Where the penny post repo is cloned
 
 **Default:** `../nla-penny-post/` (sibling directory).
 

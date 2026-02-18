@@ -6,11 +6,10 @@ This document describes what this NLA does and how its pieces fit together. For 
 
 ## What the Penny Post Is
 
-The penny post is three things:
+The penny post is two things:
 
-1. **A mailbox** — infrastructure for collecting and archiving feedback about NLA projects
-2. **A conventions source** — suggested structure for writing, triaging, and annotating feedback, with published reasoning
-3. **An NLA** — that processes its own feedback exactly the way every other NLA does
+1. **A conventions source** — suggested structure for writing, triaging, and annotating feedback, with published reasoning, plus the skills that implement them
+2. **An NLA** — that processes its own feedback exactly the way every other NLA does
 
 Named after the 1840 British postal reform that democratized communication — fitting for a project about democratizing software development.
 
@@ -26,7 +25,7 @@ your-nla/
     write-letter/SKILL.md      → ../nla-penny-post/app/write-letter.md
     check-feedback/SKILL.md    → ../nla-penny-post/app/check-feedback.md
 ../nla-framework/              # Foundation
-../nla-penny-post/             # Extension (mailbox + conventions)
+../nla-penny-post/             # Extension (conventions + skills)
 ```
 
 ---
@@ -34,8 +33,8 @@ your-nla/
 ## How Feedback Flows
 
 ```
-Feedback submitted            Maintainer discovers          Processed and archived
-(GitHub Issue, etc.)    →     (/check-feedback)       →     (boxes/ in penny post fork)
+Feedback submitted            Maintainer discovers          Triaged and recorded
+(GitHub Issue, etc.)    →     (/check-feedback)       →     (feedback log in the NLA)
                                      │
                               Triage in NLA context
                               (AI proposes verdicts,
@@ -56,15 +55,15 @@ Triage happens where the context lives — in the NLA's session, where the AI ha
 
 The penny post provides triage conventions — suggested verdict vocabulary, annotation format, evidence thresholds — as guidance, not requirements. NLAs apply these with their own judgment.
 
-### 3. Archive
+### 3. Record
 
-After triage, the annotated letter is saved to `boxes/` in the penny post fork. The intake item (e.g., GitHub Issue) gets a triage summary comment and is closed.
+After triage, accepted items are deposited in the NLA's feedback log (`reference/feedback-log.md`) as actionable work for `/maintain`. The intake item (e.g., GitHub Issue) gets a triage summary comment and is closed.
 
-`boxes/` is the permanent archive — portable markdown in git, searchable, offline-accessible, and synthesizable. The intake channel is ephemeral; the archive is the institutional memory.
+The feedback log is the NLA's record of accepted external feedback — the sibling of the friction log (which captures internal observations). Both feed into `/maintain`. The GitHub Issue remains the canonical source for the original submission and full triage reasoning.
 
 ### 4. Synthesis
 
-When multiple letters in the archive point to the same pattern, synthesis extracts and crystallizes it into a standalone knowledge document. Like triage, synthesis happens in the NLA's own context — each NLA synthesizes its own feedback.
+When feedback across multiple sources points to the same pattern, synthesis extracts and crystallizes it into a standalone knowledge document. Like triage, synthesis happens in the NLA's own context — each NLA synthesizes its own feedback, drawing on its feedback log history (`reference/feedback-log-archive.md`) and the original GitHub Issues when needed.
 
 ---
 
@@ -97,27 +96,16 @@ See [design-rationale.md](../reference/design-rationale.md) for the reasoning be
 
 ---
 
-## The Mailbox
+## Where Feedback Lives
 
-### Boxes
+Feedback files live in the NLA that receives the feedback — not in the penny post:
 
-```
-boxes/
-├── framework/           # Community mail about the NLA framework
-├── penny-post/          # Community mail about this mailbox NLA
-└── [project-name]/      # Boxes for your NLA(s) (in your fork)
-```
+- **`reference/feedback-log.md`** — Pending items accepted from external feedback, waiting for implementation
+- **`reference/feedback-log-archive.md`** — Resolved items (searchable history for synthesis and calibration)
 
-### The Fork Model
+The GitHub Issue (or other intake item) remains the canonical source for the original submission. The feedback log captures what was accepted and why — the actionable output of triage. This keeps the entire feedback lifecycle in the NLA where the context lives.
 
-- **Upstream** (canonical repo): maintained by the penny post developer. Boxes for `framework/` and `penny-post/` only.
-- **Downstream** (forks): maintained by NLA creators. They inherit community boxes from upstream but their active boxes are for their own NLA(s).
-
-`git pull` from upstream brings community mail and convention updates without disturbing private boxes.
-
-### Session Memory
-
-Each box has a `last-checked.md` file (gitignored) that tracks what's been seen. Config can specify default boxes to check, so `/check-feedback` without arguments checks your active projects.
+The penny post's own feedback lives in the penny post's own `reference/` directory, because the penny post is an NLA too.
 
 ---
 
@@ -163,23 +151,16 @@ See `install/install.md` for the full manifest.
 ## For Humans
 
 **To install penny post for your NLA:**
-1. Fork the penny post repo
-2. Clone it as a sibling to your NLA: `../nla-penny-post/`
-3. Add a box: `mkdir boxes/my-nla`
-4. Add skill wrappers to your NLA's `.claude/skills/` (see `install/skills-intent.md` for details)
-5. Configure intake channel in your penny post fork's config
+1. Clone the penny post repo as a sibling to your NLA: `../nla-penny-post/`
+2. Add skill wrappers to your NLA's `.claude/skills/` (see `install/skills-intent.md` for details)
+3. Optionally configure your intake channel in your NLA's `config.md`
 
 **To submit feedback about an NLA:**
 - Open a GitHub Issue on the NLA's repo (or whatever intake channel the NLA uses)
 - Or use `/write-letter` from within any NLA session
 
-**To change penny post conventions (in your fork):**
-- Edit the relevant doc in `app/`
-- The change takes effect immediately
-
 **To keep up with upstream:**
-- `git pull` from the upstream penny post repo
-- Your boxes and any convention customizations are untouched
+- `git pull` the penny post repo for convention and skill updates
 
 ---
 
@@ -207,11 +188,6 @@ install/
 ├── CLAUDE-intent.md                 ← Intent for NLA's CLAUDE.md
 └── skills-intent.md                 ← Intent for skill wrappers
 
-boxes/
-├── framework/                       ← Community mail about the NLA framework
-├── penny-post/                      ← Community mail about this NLA
-└── [project]/                       ← Your NLA's feedback archive
-
 ../nla-framework/core/
 ├── nla-foundations.md               ← What NLAs are (framework)
 └── skills/                          ← Framework skill logic
@@ -220,6 +196,8 @@ reference/
 ├── design-rationale.md              ← Why the system is built this way
 ├── friction-log.md                  ← Learning journal (active entries)
 ├── friction-log-archive.md          ← Resolved entries (searchable history)
+├── feedback-log.md                  ← Accepted external feedback (pending)
+├── feedback-log-archive.md          ← Resolved feedback (searchable history)
 ├── system-status.md                 ← Current state snapshot
 └── sessions/                        ← Maintenance session archives
 ```

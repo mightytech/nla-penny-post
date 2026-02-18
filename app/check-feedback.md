@@ -22,14 +22,13 @@ artifact; implementation is the maintainer's work.
   configured)
 - Optionally: a specific issue/letter to triage, specific items to focus on, or a
   previous partial triage to continue
-- Optionally: which box(es) in the archive to check for updates ("any responses to my
-  last letter?")
+- Optionally: a previous feedback log to review for calibration
 
 ## Output
 
 - A conversational summary of what's new
 - Per-item verdicts with rationale (proposed to the human for review)
-- After approval: annotated letter saved to the archive (boxes/)
+- After approval: accepted items deposited in the feedback log
 - Intake item (e.g., GitHub Issue) updated with triage summary and closed
 
 ---
@@ -60,11 +59,7 @@ Scan the intake channel for new feedback:
   For reading full issue content, use `gh api repos/<owner>/<repo>/issues/<number>`
   (the REST API is more reliable across token types than the GraphQL-based `gh issue view`).
 - **Other channels:** Follow the intake configuration in config.md.
-- **Archive check:** Optionally scan boxes/ for letters with new annotations since
-  last-checked.md.
-
-Read `last-checked.md` in the relevant box (if it exists) to determine what's new vs.
-already seen.
+Read `reference/last-checked.md` (if it exists) to determine what's new vs. already seen.
 
 Present what's new in conversational form:
 - How many new items
@@ -96,8 +91,8 @@ the submitter may have already provided clarification.
 
 Before assessing items, look for connections:
 
-- Are there previous letters from this source in the archive? Read them.
-- Are there existing letters on similar topics? Note connections.
+- Are there previous entries from this source in the feedback log archive? Read them.
+- Are there existing feedback log entries on similar topics? Note connections.
 - Are there design rationale entries relevant to these items?
 - Has this NLA already addressed any of these items?
 
@@ -130,25 +125,22 @@ After individual assessment, look across items:
 - Does the verdict on one item affect another? Flag the dependency.
 - Are there items that should be combined or split?
 
-### Step 6: Record and Archive
+### Step 6: Record
 
 After the human approves (or adjusts) the verdicts:
 
-1. **Create the annotated letter.** Format the feedback as a markdown file with per-item
-   verdict annotations. Add a triage summary at the top.
-2. **Save to the archive.** Write the letter to the appropriate box in the penny post fork
-   (e.g., `boxes/my-nla/2026-02-16-source-topic.md`).
-3. **Deposit accepted items in the feedback log.** For each accepted (or adapted) item,
-   add an entry to `reference/feedback-log.md` with: the source (link to archived letter
-   and item number), the verdict and rationale, and a concrete description of what to do.
+1. **Deposit accepted items in the feedback log.** For each accepted (or adapted) item,
+   add an entry to `reference/feedback-log.md` with: the source (link to the GitHub Issue
+   or intake item), the verdict and rationale, and a concrete description of what to do.
    This makes accepted items visible to `/maintain` at the next session start. Items that
-   are deferred or declined don't go in the feedback log — they're recorded in the
-   archived letter only.
-4. **Update the intake channel.** Add a triage summary comment to the GitHub Issue (or
-   equivalent) and close it. If this fails due to permission errors, note it and continue
-   — the archive and feedback log are the important artifacts. Run `lib/check-setup.sh`
+   are deferred or declined don't go in the feedback log — they're recorded in the triage
+   summary comment on the intake item.
+2. **Update the intake channel.** Add a triage summary comment to the GitHub Issue (or
+   equivalent) covering all items — accepted, deferred, and declined — with verdicts and
+   reasoning. Then close the issue. If this fails due to permission errors, note it and
+   continue — the feedback log is the important artifact. Run `lib/check-setup.sh`
    to diagnose permission issues.
-5. **Update last-checked.md** in the box with the current date and what was seen.
+3. **Update last-checked.md** in `reference/` with the current date and what was seen.
 
 ---
 

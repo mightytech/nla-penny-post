@@ -1,6 +1,6 @@
 # Penny Post
 
-A feedback mailbox for NLA projects, built on the [NLA Framework](../nla-framework/).
+A feedback conventions and skills package for NLA projects, built on the [NLA Framework](../nla-framework/).
 
 Named after the 1840 British postal reform that democratized communication — fitting for a project about democratizing software development beyond coders.
 
@@ -8,13 +8,14 @@ Named after the 1840 British postal reform that democratized communication — f
 
 ## What It Is
 
-The penny post is three things:
+The penny post is two things:
 
-1. **A mailbox** — infrastructure for collecting and archiving feedback about NLA projects
-2. **A conventions source** — suggested structure for writing, triaging, and annotating feedback
-3. **An NLA** — that processes its own feedback exactly the way every other NLA does
+1. **A conventions source** — suggested structure for writing, triaging, and annotating feedback, plus the skills that implement them
+2. **An NLA** — that processes its own feedback exactly the way every other NLA does
 
-It's also the first **NLA extension** — a capability that other NLAs install and use from within their own sessions. Most users never open the penny post directly; they interact with it through `/check-feedback` and `/write-letter` in their own NLA.
+It's the first **NLA extension** — a capability that other NLAs install and use from within their own sessions. Most users never open the penny post directly; they interact with it through `/check-feedback` and `/write-letter` in their own NLA.
+
+All feedback files (feedback log, archive) live in the NLA that receives the feedback — not in the penny post. The penny post provides conventions and skills; each NLA manages its own feedback lifecycle.
 
 ---
 
@@ -28,10 +29,8 @@ It's also the first **NLA extension** — a capability that other NLAs install a
 
 ### Setup
 
-1. Fork this repo
-2. Clone your fork as a sibling to your NLA: `../nla-penny-post/`
-3. Add a box for your NLA: `mkdir boxes/my-nla`
-4. Add skill wrappers to your NLA (see `install/skills-intent.md` for details):
+1. Clone this repo as a sibling to your NLA: `../nla-penny-post/`
+2. Add skill wrappers to your NLA (see `install/skills-intent.md` for details):
 
 ```
 # .claude/skills/check-feedback/SKILL.md
@@ -41,7 +40,7 @@ Read and follow `../nla-penny-post/app/check-feedback.md`.
 Read and follow `../nla-penny-post/app/write-letter.md`.
 ```
 
-5. Optionally configure your intake channel in `config.md`
+3. Optionally configure your intake channel in `config.md`
 
 The `install/` directory contains the full package manifest — intent files describing what your NLA needs to integrate penny post. When a framework-level `/install` skill is available, it will automate this setup.
 
@@ -64,35 +63,18 @@ If you're in a Claude Code session, you can also use `/write-letter` to draft we
 
 ---
 
-## The Mailbox
-
-```
-boxes/
-├── framework/           # Community mail about the NLA framework
-├── penny-post/          # Community mail about this mailbox NLA
-└── [your-project]/      # Your NLA's feedback archive (in your fork)
-```
-
-**Community boxes** (`framework/`, `penny-post/`) ship with the upstream repo. `git pull` brings community mail and convention updates.
-
-**Your boxes** are added in your fork for your own NLA(s). They stay in your fork; upstream changes don't touch them.
-
-**Boxes are archives**, not inboxes. Feedback arrives through intake channels (GitHub Issues by default). After triage, processed letters are saved here as the permanent, searchable record.
-
----
-
 ## How Feedback Flows
 
 ```
-Feedback submitted            Maintainer discovers          Processed and archived
-(GitHub Issue, etc.)    →     (/check-feedback)       →     (boxes/ in your fork)
+Feedback submitted            Maintainer discovers          Triaged and recorded
+(GitHub Issue, etc.)    →     (/check-feedback)       →     (feedback log in NLA)
 ```
 
 1. **Submit** — Anyone opens a GitHub Issue (or uses `/write-letter`)
 2. **Discover** — Maintainer runs `/check-feedback` in their NLA's session
 3. **Triage** — AI proposes verdicts with rationale; human reviews and decides
-4. **Archive** — Annotated letter saved to boxes/; issue gets summary and closes
-5. **Synthesize** — When patterns emerge across letters, `/synthesize` distills them
+4. **Record** — Accepted items deposited in feedback log; issue gets summary and closes
+5. **Synthesize** — When patterns emerge across feedback, `/synthesize` distills them
 
 ---
 
@@ -110,9 +92,6 @@ Feedback submitted            Maintainer discovers          Processed and archiv
 │   ├── check-feedback.md            # Feedback discovery and triage
 │   ├── write-letter.md              # Letter drafting and submission
 │   └── synthesize.md                # Pattern synthesis
-├── boxes/                           # The archive (processed feedback)
-│   ├── framework/                   # Community mail about the NLA framework
-│   └── penny-post/                  # Community mail about this NLA
 ├── install/                         # Package manifest (for NLA integration)
 │   ├── install.md                   # Orchestrator — what this package needs
 │   ├── CLAUDE-intent.md             # Intent for NLA's CLAUDE.md
@@ -141,7 +120,7 @@ Feedback submitted            Maintainer discovers          Processed and archiv
 
 ## Conventions
 
-The penny post suggests conventions for feedback — letter format, triage vocabulary, annotation format. These are suggestions with published reasoning, not requirements. Your fork, your rules.
+The penny post suggests conventions for feedback — letter format, triage vocabulary, annotation format. These are suggestions with published reasoning, not requirements.
 
 See `app/overview.md` for the conventions and `reference/design-rationale.md` for why they exist.
 
@@ -171,20 +150,9 @@ The penny post improves by improving its documentation. The friction log capture
 
 ## Contributing
 
-Submit feedback about the **NLA framework** by opening an issue on the framework repo (or adding a letter to `boxes/framework/` via PR).
+Submit feedback about the **NLA framework** by opening an issue on the framework repo.
 
-Submit feedback about the **penny post** by opening an issue on this repo (or adding a letter to `boxes/penny-post/` via PR).
-
----
-
-## Keeping Up with Upstream
-
-```bash
-cd ../nla-penny-post
-git pull upstream main
-```
-
-Convention updates and community mail flow from upstream. Your boxes and any customizations are untouched.
+Submit feedback about the **penny post** by opening an issue on this repo.
 
 ---
 

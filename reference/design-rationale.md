@@ -12,36 +12,38 @@ This document explains WHY the penny post is built the way it is. It captures th
 
 The penny post is a communication and knowledge management system. Its core operations — reading letters, assessing whether observations are general, connecting patterns across sources, synthesizing knowledge — are judgment tasks. Traditional software would need a ticketing system, a schema, a workflow engine, API endpoints, and notification services. The NLA version: markdown files in a git repo, conventions described in prose, interpreted by LLMs.
 
-The mailbox demonstrates NLA principles it was designed to support: natural language as interface, judgment over rules, flexible on top / structured underneath, documentation as application.
+The penny post demonstrates NLA principles it was designed to support: natural language as interface, judgment over rules, flexible on top / structured underneath, documentation as application.
 
 ---
 
 ## Why This Structure
 
-### The Apartment Building (boxes/)
+### Feedback Lives in the NLA
 
-The mailbox uses a multi-box architecture: one repo, many boxes, one per project. This solves several problems at once:
+Each NLA stores its own feedback files — `reference/feedback-log.md` for pending items,
+`reference/feedback-log-archive.md` for resolved history. The penny post provides
+conventions and skills; it doesn't store other NLAs' feedback.
 
-- **One repo per developer** regardless of how many NLAs they maintain
-- **Community and private** — community boxes ship with the canonical repo, private boxes stay in forks
-- **Self-referential** — the penny post's own feedback has a natural home (`boxes/penny-post/`), no special-casing
-- **Git-native** — `git pull` from upstream brings community mail without disturbing private boxes
+**Why not a central archive?** Earlier designs had a `boxes/` directory in the penny post
+for archiving processed letters. But this conflicted with the principle that processing
+happens where context lives. If triage happens in the NLA, and synthesis happens in the
+NLA, why does the archive live somewhere else? The feedback log and its archive are the
+NLA's record. The GitHub Issue (or other intake item) remains the canonical source for
+the original submission. No separate archive step needed.
 
-**Why not one box?** Different projects need different feedback spaces. Framework feedback and Duet feedback have different audiences, different triage criteria, different contexts. Mixing them makes every letter harder to process.
+**What we rejected:** Central mailbox with per-project boxes, fork model for distributing
+archived letters. Simpler to keep everything in the NLA that owns it.
 
-**Why not separate repos per box?** Too much overhead. A box is just a directory. Adding one is `mkdir`.
+### The Feedback Log as Tracker
 
-### Letters as Tracker
+The feedback log is the tracker. No separate tracking infrastructure. Accepted items
+from triage are deposited with their verdict, rationale, and what to do. Resolved items
+move to the archive file. The GitHub Issue comment has the full triage reasoning for
+all items including rejections and deferrals.
 
-Letters are the tracker. No separate tracking infrastructure. Triage verdicts, responses, and status updates are annotations on the letter itself. This keeps everything in context — you can read a letter and see its full history without consulting another system.
-
-**What we rejected:** Separate issue trackers, status databases, tracking spreadsheets. Each would add infrastructure that needs maintenance and would separate the assessment from the thing being assessed.
-
-### Sub-Letters
-
-Large letters can be split into focused sub-documents. This emerged from the observation that a twenty-item letter about four different themes is hard to process as one unit, but four five-item sub-letters are natural.
-
-Sub-letters reference the original. The original is annotated noting the split. Relationships are sentences, not foreign keys.
+**What we rejected:** Separate issue trackers, status databases, tracking spreadsheets,
+local letter archives. Each would add infrastructure that needs maintenance. The feedback
+log plus the GitHub Issue comment captures everything needed.
 
 ---
 
@@ -75,25 +77,26 @@ The canonical repo is public. Community boxes are readable by anyone. This enabl
 
 ### The Penny Post Is a Forkable NLA
 
-The mailbox is designed so others can fork it for their own purposes — feedback channels for their own NLAs, team coordination, inter-NLA communication, general knowledge management. This requires clean separation between domain-specific content (framework feedback norms) and general patterns (letter format, annotation conventions).
+The penny post is designed so others can use it for their own purposes — feedback channels for their own NLAs, team coordination, inter-NLA communication, general knowledge management. This requires clean separation between domain-specific content (framework feedback norms) and general patterns (letter format, annotation conventions).
 
 ### The Penny Post as NLA Extension
 
 The penny post is primarily an extension that other NLAs install, not a standalone
 application users interact with directly. 99% of usage happens from within other NLAs
-via framework-level skills (/check-feedback, /write-letter).
+via penny post skills (/check-feedback, /write-letter).
 
 **Why:** Triage requires the context of the receiving NLA. The penny post alone can't
 assess domain-specific feedback — the NLA maintainer can, with full project context loaded.
 Triage naturally happens where the context lives.
 
-**What it affects:** The penny post's scope narrows to: mailbox infrastructure, triage
-conventions (suggested, not enforced), synthesis across boxes, and self-maintenance. The
-active processing moves to the NLA side via framework skills.
+**What it affects:** The penny post's scope narrows to: feedback conventions (suggested,
+not enforced), skills, and self-maintenance. The active processing and all feedback
+storage happen in the NLA.
 
 **What we rejected:** The penny post as active triage processor (original design). This
 would require either the penny post reading other NLAs' files (cross-project coupling)
-or triaging without context (poor judgment). Neither is acceptable.
+or triaging without context (poor judgment). Neither is acceptable. Also rejected: central
+mailbox with per-project boxes — simpler and more consistent to keep everything in the NLA.
 
 ### Conventions Over Protocol
 
@@ -116,29 +119,19 @@ experience (the user feels like they're using native capabilities of their own N
 **Why:** Users shouldn't context-switch between projects. The NLA they're in is their
 workspace. Extensions add capabilities to that workspace, not destinations outside it.
 
-### Pluggable Intake, Portable Archive
+### Pluggable Intake
 
-The mailbox is an abstraction with two layers: an intake channel (where feedback arrives)
-and an archive (where processed feedback is stored).
+The intake channel is pluggable — GitHub Issues by default, but the architecture supports
+any channel (email, web forms, Jira, Slack, S3, etc.). Config describes where to look;
+the AI handles the mechanics. NLA creators choose channels appropriate for their audience.
 
-**Intake** is pluggable — GitHub Issues by default, but the architecture supports any
-channel (email, web forms, Jira, Slack, S3, etc.). Config describes where to look; the
-AI handles the mechanics. NLA creators choose channels appropriate for their audience.
 GitHub Issues is the default because it's universal for developers, requires zero
-infrastructure, and closes the feedback loop via issue comments.
-
-**Archive** is `boxes/` in the penny post fork — portable markdown in git. Searchable,
-offline-accessible, synthesizable. The archive is the permanent record; the intake
-channel is ephemeral.
-
-**Why not just boxes/ for everything?** The original design required contributors to fork
-the penny post repo and submit PRs to add letters. This creates friction for casual
-feedback and excludes non-developers entirely. Separating intake from archive means
-anyone can submit through familiar channels; the maintainer imports and processes into
-the permanent archive.
+infrastructure, closes the feedback loop via issue comments, and supports two-way
+conversation (clarifying questions, follow-ups).
 
 **What we rejected:** Tying the penny post to any single intake mechanism. The conventions
-govern how feedback is processed, not how it arrives.
+govern how feedback is processed, not how it arrives. Also rejected: requiring contributors
+to fork and PR — too much friction for casual feedback.
 
 ### Intent-Based Package Installation
 

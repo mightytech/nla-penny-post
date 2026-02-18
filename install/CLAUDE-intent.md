@@ -33,13 +33,15 @@ The NLA's available skills section should include:
 These are penny post skills, distinct from framework skills like `/maintain` or
 `/startup`.
 
-## Mailbox Awareness
+## Feedback File Locations
 
 The NLA should know:
 
-- Its feedback archive lives in the penny post fork at `../nla-penny-post/boxes/[project-name]/`.
-- Feedback arrives through intake channels (GitHub Issues by default) and is archived
-  to boxes/ after triage.
+- Feedback arrives through intake channels (GitHub Issues by default).
+- After triage, accepted items are deposited in `reference/feedback-log.md`.
+- Resolved items move to `reference/feedback-log-archive.md`.
+- The feedback log feeds into `/maintain` — it's the sibling of the friction log
+  (internal observations vs. external feedback).
 - The penny post repo is a sibling directory at `../nla-penny-post/`.
 
 ## What NOT to Change
