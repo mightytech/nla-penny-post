@@ -101,6 +101,9 @@ Feedback submitted            Maintainer discovers          Triaged and recorded
 │   ├── design-rationale.md          # Why the system is built this way
 │   ├── friction-log.md              # Learning journal (active entries)
 │   ├── friction-log-archive.md      # Resolved entries
+│   ├── feedback-log.md              # Accepted external feedback (pending)
+│   ├── feedback-log-archive.md      # Resolved feedback (searchable history)
+│   ├── installed-packages.md        # Record of installed NLA packages
 │   ├── system-status.md             # Current state snapshot
 │   └── sessions/                    # Maintenance session archives
 ├── .claude/skills/                  # Skill entry points
@@ -111,8 +114,10 @@ Feedback submitted            Maintainer discovers          Triaged and recorded
 │   ├── maintain/                    # Framework wrapper
 │   ├── friction-log/                # Framework wrapper
 │   ├── validate/                    # Framework wrapper
-│   ├── plan/                        # Framework wrapper
-│   └── preferences/                 # Framework wrapper
+│   ├── preferences/                 # Framework wrapper
+│   ├── install/                     # Framework wrapper
+│   ├── update/                      # Framework wrapper
+│   └── export/                      # Framework wrapper
 └── lib/                             # Traditional code helpers
 ```
 

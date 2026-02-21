@@ -131,7 +131,7 @@ When running as a standalone NLA (maintaining itself), the penny post also uses 
 | `/friction-log` | Capture observations about how the system works |
 | `/validate` | Check system consistency |
 | `/preferences` | Configure user preferences |
-| `/plan` | Plan major changes |
+| `/export` | Export as a plugin for Claude Code or Cowork |
 
 ---
 
@@ -198,6 +198,7 @@ reference/
 ├── friction-log-archive.md          ← Resolved entries (searchable history)
 ├── feedback-log.md                  ← Accepted external feedback (pending)
 ├── feedback-log-archive.md          ← Resolved feedback (searchable history)
+├── installed-packages.md            ← Record of installed NLA packages
 ├── system-status.md                 ← Current state snapshot
 └── sessions/                        ← Maintenance session archives
 ```

@@ -33,7 +33,9 @@ the penny post. Core docs updated. Skills restructured. Ready for first real use
 | /friction-log | Ready | Observation capture |
 | /maintain | Ready | System maintenance |
 | /validate | Ready | System validation and debugging |
-| /plan | Ready | Planning mode |
+| /install | Ready | Package installation |
+| /update | Ready | Package updates |
+| /export | Ready | Plugin export for distribution |
 
 ### Feedback
 
