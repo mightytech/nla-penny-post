@@ -54,6 +54,28 @@ accepted, Status. Include what you have; don't force what you don't.
 
 *Entries are added chronologically, newest first.*
 
+## 2026-02-23 — Write-letter should support friction log compilation
+
+**Source:** [Issue #8](https://github.com/mightytech/nla-penny-post/issues/8)
+**Verdict:** Accept
+**Status:** resolved
+**Resolved:** 2026-02-23 — Added "Compiling friction log entries" subsection to `app/write-letter.md` Step 1 (Gather Material). Covers reading pending entries, grouping by recipient, reframing from internal observation to external feedback.
+
+**What to do:**
+Add guidance to `app/write-letter.md` for a "compile my friction log entries" starting point.
+When invoked with this intent, write-letter should: read pending friction log entries, group
+by likely recipient (framework, package maintainers, etc.), draft one letter per recipient
+compiling relevant entries with context, then follow the normal review/approve/deliver flow.
+Fits naturally in Step 1 (Gather Material) or as a recognized starting point pattern.
+
+**Why it was accepted:**
+Clean division of responsibility — penny post can assume every NLA has a friction log;
+the framework can't assume every NLA has penny post. The framework side (startup awareness,
+session boundary nudges) is already built. This completes the path from observation to
+delivery. Capability addition, not structural change.
+
+---
+
 ## 2026-02-17 — Monitor whether feedback log + GitHub Issues suffice for triage calibration
 
 **Source:** [Issue #4](https://github.com/mightytech/nla-penny-post/issues/4), Item 3

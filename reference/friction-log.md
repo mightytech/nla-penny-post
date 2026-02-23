@@ -67,6 +67,38 @@ Not every entry needs all fields. The essentials are: Observation, Type, Severit
 
 *Entries are added chronologically, newest first.*
 
+## 2026-02-23 — Letter delivered to boxes/ instead of GitHub Issues
+
+**Type:** process
+**Severity:** minor
+**Task:** write-letter (from framework session)
+**Status:** resolved
+**Resolved:** 2026-02-23 — Resubmitted as Issue #8. Original file removed from boxes/.
+
+**Observation:**
+A framework maintenance session (2026-02-23) drafted a letter for the penny post using
+/write-letter but saved it to `boxes/penny-post/` instead of submitting via `gh issue create`.
+The session log says "Penny post letter delivered to `boxes/penny-post/`" — the old delivery
+mechanism that was eliminated in the architectural reframing.
+
+**Confirmed reason:**
+The letter was drafted from the framework's session, not a penny post session. The framework
+AI used the pre-elimination boxes/ pattern as the delivery target. The penny post's
+write-letter.md clearly specifies GitHub Issues as the submission channel (Step 4), but the
+cross-project session didn't have the penny post's updated architecture fully loaded.
+
+**Generalizable:** partially
+This is a transition-period issue — the boxes/ directory still exists with historical files,
+making it look like a valid destination. As more sessions use the correct flow, this should
+fade. Worth watching for recurrence.
+
+**Affected documentation:**
+No penny post doc change needed — write-letter.md already specifies the correct flow. The
+framework's write-letter wrapper or the AI's understanding of cross-project delivery is
+the gap.
+
+---
+
 ## Patterns to Watch
 
 *Recurring themes that may need deeper attention:*

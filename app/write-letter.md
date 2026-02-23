@@ -50,6 +50,24 @@ Look for observations worth sharing:
 The AI surfaces candidates; the human curates. Not everything worth noticing is worth
 sending as feedback.
 
+#### Compiling friction log entries
+
+When the user wants to share accumulated friction observations upstream — either prompted
+by a startup nudge or on their own initiative — read `reference/friction-log.md` for
+pending entries and use them as the starting material.
+
+Not all entries belong in the same letter. Group by likely recipient:
+- Entries about framework behavior → letter to the framework maintainer
+- Entries about a package's behavior → letter to that package's maintainer
+- Entries about this NLA's own behavior → probably not a letter (handle via `/maintain`)
+
+Draft one letter per recipient, compiling the relevant entries with context. Each entry
+becomes a letter item — preserve the diagnostic detail (instruction chains, exact quotes)
+but reframe from internal observation to external feedback. The friction log captures what
+you noticed; the letter explains why the recipient should care.
+
+Then continue with the normal flow: draft, review with the human, submit.
+
 ### Step 2: Draft the Letter
 
 Structure the letter using the suggested format (or whatever structure fits the material):
