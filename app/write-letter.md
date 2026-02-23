@@ -139,6 +139,34 @@ should suggest structure proportional to the content, not impose a fixed templat
 Use natural language for confidence. "High" and "high for persistent NLAs, less sure
 about stateless ones" are both valid. Calibrate honestly rather than picking from a menu.
 
+### Diagnostic Richness for Behavioral Friction
+
+When a letter item describes behavioral friction — the NLA did the wrong thing, or didn't
+do the right thing — the AI has a unique advantage: it was there. It read the instructions,
+made the judgment call, and can trace the full chain. Use that when drafting.
+
+For items about behavioral friction:
+
+- **Include the instruction chain** — which docs were read, what specific guidance led to
+  the behavior or inaction. This turns a problem report into a diagnostic.
+- **Use exact quotes from docs**, not paraphrases. "common-patterns.md step 3 says 'always
+  start in 4/4 time'" is verifiable by the receiving maintainer. "The patterns doc
+  recommends simple time signatures" sounds plausible whether accurate or not.
+- **Propose documentation changes** when possible — even tentative ones. "Consider
+  rewording step 3 to handle experienced users" gives the maintainer a starting point,
+  not just a problem to investigate. Frame proposals as suggestions, not patches — the
+  maintainer has context you don't about all the cases a doc serves.
+- **Flag confidence honestly.** If the instruction chain is reconstructed from memory
+  rather than traced in the moment, say so. Friction-log entries captured close to the
+  moment are more reliable than end-of-session reconstructions. When drawing from friction
+  log entries, rely on what they recorded; when adding context from memory, note the
+  difference.
+
+This doesn't apply to all letter items. Structural feedback, process observations, and
+positive feedback don't need instruction chains — they're different kinds of signal. The
+diagnostic richness matters specifically when the feedback is "the NLA behaved wrong
+because the docs say X."
+
 ---
 
 ## Customization

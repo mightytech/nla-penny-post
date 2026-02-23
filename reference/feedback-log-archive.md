@@ -12,6 +12,46 @@ Resolved feedback log entries, moved here from `feedback-log.md` during `/mainta
 
 *Archived entries in reverse chronological order.*
 
+## 2026-02-23 — Update check-feedback.md "isn't built yet" caveat about close-the-loop
+
+**Source:** [Issue #5](https://github.com/mightytech/nla-penny-post/issues/5)
+**Verdict:** Accept — factual update, the framework now handles this
+**Status:** resolved
+**Resolved:** 2026-02-23 — Updated close-the-loop paragraph in `app/check-feedback.md` to note the framework's `/maintain` skill now handles implementation follow-up comments.
+
+**What to do:**
+Update the paragraph in `app/check-feedback.md` (lines 144-150) that says the close-the-loop
+step "isn't built yet." The framework's `/maintain` skill now includes step 8: post a
+follow-up comment when accepted items are implemented. Update the note to reflect current state.
+
+**Why it was accepted:**
+The documentation is now inaccurate. The framework's maintain skill handles this step.
+Straightforward factual correction.
+
+---
+
+## 2026-02-23 — Add LLM self-aware diagnostic guidance to write-letter
+
+**Source:** [Issue #7](https://github.com/mightytech/nla-penny-post/issues/7)
+**Verdict:** Accept — well-reasoned quality improvement
+**Status:** resolved
+**Resolved:** 2026-02-23 — Added "Diagnostic Richness for Behavioral Friction" subsection to `app/write-letter.md` Judgment Calls. Covers instruction chains, exact quotes, proposed doc changes, and confidence flagging. Complements the framework's friction-log diagnostic guidance.
+
+**What to do:**
+Add guidance to `app/write-letter.md` (Step 2 and/or Judgment Calls) about enriching
+letter items that describe behavioral friction: include instruction chains, use exact
+quotes from docs (not paraphrases), propose documentation changes when possible, and flag
+confidence honestly about reconstructed vs. traced reasoning. Consider noting the
+"diagnostically rich NLA feedback" concept in voice-and-values or common-patterns.
+
+**Why it was accepted:**
+Aligns with penny post values (rationale over verdict, transparency). The framework has
+already implemented the friction-log side; this completes the pipeline. The risk analysis
+(confabulation, context decay, incomplete proposals) is sound with clear mitigations.
+Implementation is documentation enrichment, not structural change.
+
+---
+
 ## 2026-02-17 — Record mailbox elimination as architectural pattern
 
 **Source:** [Issue #4](https://github.com/mightytech/nla-penny-post/issues/4), Item 1
