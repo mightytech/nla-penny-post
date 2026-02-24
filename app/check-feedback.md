@@ -39,9 +39,10 @@ Before running this skill, read:
 
 1. **This NLA's own docs** — You're already in the NLA's session, so its overview, design
    rationale, and task docs are your primary context for assessment.
-2. **[Voice and Values](shared/voice-and-values.md)** — How to communicate about feedback.
-3. **[Common Patterns](shared/common-patterns.md)** — Annotation conventions.
-4. **[Output Spec](shared/output-spec.md)** — Output format for triage summaries.
+2. **[Values](shared/values.md)** — What the penny post prioritizes and protects.
+3. **[Voice](shared/voice.md)** — How to communicate about feedback.
+4. **[Common Patterns](shared/common-patterns.md)** — Annotation conventions.
+5. **[Output Spec](shared/output-spec.md)** — Output format for triage summaries.
 
 ---
 

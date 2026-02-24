@@ -85,7 +85,8 @@ Feedback submitted            Maintainer discovers          Triaged and recorded
 ├── app/                             # The application (LLM reads and executes)
 │   ├── overview.md                  # What this NLA does, how pieces connect
 │   ├── shared/
-│   │   ├── voice-and-values.md      # Communication tone and values
+│   │   ├── values.md                # Commitments, priorities, non-negotiables
+│   │   ├── voice.md                 # Communication tone and style
 │   │   ├── common-patterns.md       # Shared processing patterns
 │   │   └── output-spec.md           # Output format
 │   ├── config-spec.md               # What users can configure
@@ -117,7 +118,10 @@ Feedback submitted            Maintainer discovers          Triaged and recorded
 │   ├── preferences/                 # Framework wrapper
 │   ├── install/                     # Framework wrapper
 │   ├── update/                      # Framework wrapper
-│   └── export/                      # Framework wrapper
+│   ├── check-updates/               # Framework wrapper
+│   ├── export/                      # Framework wrapper
+│   ├── think/                       # Framework wrapper
+│   └── debrief/                     # Framework wrapper
 └── lib/                             # Traditional code helpers
 ```
 

@@ -131,7 +131,12 @@ When running as a standalone NLA (maintaining itself), the penny post also uses 
 | `/friction-log` | Capture observations about how the system works |
 | `/validate` | Check system consistency |
 | `/preferences` | Configure user preferences |
+| `/install` | Install a new NLA package |
+| `/update` | Pull remote changes, apply package intent updates |
+| `/check-updates` | Scan for available updates without making changes |
 | `/export` | Export as a plugin for Claude Code or Cowork |
+| `/think` | Collaborative design exploration before planning |
+| `/debrief` | Reflect on completed work while context is fresh |
 
 ---
 
@@ -171,7 +176,8 @@ app/
 ├── overview.md                      ← This file
 │
 ├── shared/
-│   ├── voice-and-values.md          ← Communication tone and values
+│   ├── values.md                   ← Commitments, priorities, non-negotiables
+│   ├── voice.md                    ← Communication tone and style
 │   ├── common-patterns.md          ← Shared processing patterns
 │   └── output-spec.md              ← Output format
 │

@@ -79,7 +79,7 @@ Runtime tracing logs the LLM's decisions during work sessions — which document
 
 ## Constraints
 
-- Voice values (respect for effort, transparency, honest calibration) are communication standards, not preferences. Users cannot configure the system to dismiss feedback dismissively or skip rationale.
+- Core values (`values.md`: transparency, respect for effort) and voice standards (`voice.md`: honest calibration, clear communication) are not preferences. Users cannot configure the system to dismiss feedback dismissively or skip rationale.
 - Triage rationale cannot be disabled. Every verdict must include reasoning, even if brief.
 - The annotation convention (blockquoted with attribution) is a standard, not a preference. Consistency enables cross-letter readability.
 

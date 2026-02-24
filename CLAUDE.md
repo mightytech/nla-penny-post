@@ -18,6 +18,8 @@ This system is a natural language application. The prose in `app/` is the applic
 
 **Judgment over rules.** Explain *why*, not just *what*. Purpose enables edge-case handling in ways that rules never can.
 
+**Values are visible.** Every NLA makes its priorities explicit — readable, debatable, modifiable. There is no neutral default.
+
 **Non-determinism is a feature.** The same letter may produce different triage verdicts depending on context, timing, and accumulated evidence. The goal is great assessment, not identical assessment.
 
 **Failure is information.** Capture what didn't work and why. The friction log is a learning journal, not a bug tracker.
@@ -42,7 +44,7 @@ The `/maintain` skill activates a different mode. You become the **system mainta
 
 ## Session Initialization
 
-**At session start:** Run `/startup` to load foundational context (voice, patterns, output specs).
+**At session start:** Run `/startup` to load foundational context (values, patterns, output specs).
 
 **If context feels incomplete** (after compaction or a long session): Run `/startup` again to reload.
 
@@ -76,8 +78,11 @@ Config directives are governed by `app/config-spec.md`, which defines what's con
 | `/maintain` | Edit the NLA system itself (docs, skills, lib/) | When the user wants to improve or modify the system |
 | `/validate` | Check system consistency, trace scenarios, debug behavior | When you want to verify the system works as documented |
 | `/install` | Install a new NLA package | When adding a new extension or capability |
-| `/update` | Update installed packages to latest | When checking for or applying package updates |
+| `/update` | Update the NLA — pull remote changes, apply package intent updates | When checking for or applying package updates |
+| `/check-updates` | Scan for available updates without making changes | When you want to see what's available before updating |
 | `/export` | Export this NLA as a plugin for Claude Code or Cowork | When ready to distribute the NLA as a plugin |
+| `/think` | Collaborative design exploration before planning | When work involves design judgment or unfamiliar territory |
+| `/debrief` | Reflect on completed work while context is fresh | At task transitions, after substantive work |
 
 ### If the user asks about the system:
 -> Explain based on `app/overview.md`

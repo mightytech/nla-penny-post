@@ -31,8 +31,9 @@ what stays out, and when it's ready to send.
 
 Before running this skill, read:
 
-1. **[Voice and Values](shared/voice-and-values.md)** — How to communicate about feedback.
-2. **[Common Patterns](shared/common-patterns.md)** — Letter structure conventions.
+1. **[Values](shared/values.md)** — What the penny post prioritizes and protects.
+2. **[Voice](shared/voice.md)** — How to communicate about feedback.
+3. **[Common Patterns](shared/common-patterns.md)** — Letter structure conventions.
 
 ---
 

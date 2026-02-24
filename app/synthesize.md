@@ -36,9 +36,10 @@ Before running this task, read:
 1. **This NLA's own docs** — You're already in the NLA's session. Its overview, design
    rationale, and task docs provide the context for assessing whether patterns are
    meaningful.
-2. **[Voice and Values](shared/voice-and-values.md)** — How to communicate about patterns.
-3. **[Common Patterns](shared/common-patterns.md)** — Cross-reference conventions.
-4. **[Output Spec](shared/output-spec.md)** — Synthesis output format.
+2. **[Values](shared/values.md)** — What the penny post prioritizes and protects.
+3. **[Voice](shared/voice.md)** — How to communicate about patterns.
+4. **[Common Patterns](shared/common-patterns.md)** — Cross-reference conventions.
+5. **[Output Spec](shared/output-spec.md)** — Synthesis output format.
 
 ---
 

@@ -15,7 +15,7 @@ submission.
 Read and follow the instructions in **`app/write-letter.md`**. That document is your
 primary source of truth for this task.
 
-It will direct you to read prerequisite docs (voice/values, common patterns) if you
+It will direct you to read prerequisite docs (values, voice, common patterns) if you
 haven't already. Follow that prerequisite chain.
 
 ## Input

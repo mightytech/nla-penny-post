@@ -6,13 +6,13 @@ Current state of the NLA system. Updated by `/maintain` at the close of maintena
 
 ## Last Updated
 
-2026-02-16 — First review and architectural reframing
+2026-02-23 — Framework update (voice/values split, new skills)
 
 ## System State
 
-**Overall:** Architecture reframed and simplified. The penny post is an NLA extension
-(conventions + skills + self-maintaining NLA). Feedback files live in each NLA, not in
-the penny post. Core docs updated. Skills restructured. Ready for first real use.
+**Overall:** Stable and current with framework. The penny post is an NLA extension
+(conventions + skills + self-maintaining NLA). Feedback files live in each NLA.
+`voice-and-values.md` split into `values.md` and `voice.md`. `boxes/` directory removed.
 
 ### Skills
 
@@ -34,26 +34,24 @@ the penny post. Core docs updated. Skills restructured. Ready for first real use
 | /maintain | Ready | System maintenance |
 | /validate | Ready | System validation and debugging |
 | /install | Ready | Package installation |
-| /update | Ready | Package updates |
+| /update | Ready | Pull remotes, apply intent updates, rollback branch |
+| /check-updates | Ready | Read-only scan for available updates |
 | /export | Ready | Plugin export for distribution |
+| /think | Ready | Collaborative design exploration |
+| /debrief | Ready | Post-work reflection |
 
 ### Feedback
 
 | File | Status | Notes |
 |------|--------|-------|
-| reference/feedback-log.md | 3 entries, all resolved | From end-to-end test (2026-02-17) |
-| reference/feedback-log-archive.md | Not yet created | Will hold resolved entries |
+| reference/feedback-log.md | 1 pending entry | Monitoring: feedback log + GitHub Issues sufficiency |
+| reference/feedback-log-archive.md | 9 resolved entries | Searchable history from Issues #4, #5-8 |
 
 ### Recent Changes
 
-- Initial project creation from NLA Framework via `/create-app` (2026-02-15)
+- Framework update: voice/values split, new skills, validation fixes (2026-02-23)
+- Triage Issues #5-8, implement accepted feedback (2026-02-23)
 - First review session: architectural reframing (2026-02-16)
-  - Penny post reframed as NLA extension
-  - Triage and synthesis moved to NLA-side
-  - /check-mail and /triage replaced by /check-feedback
-  - /write-letter skill added
-  - GitHub Issues as default intake channel, feedback log in NLA
-  - All core docs updated (overview, CLAUDE.md, README, task docs)
   - See `sessions/2026-02-16-first-review.md` for full details
 
 ---

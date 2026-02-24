@@ -14,7 +14,7 @@ in the context of this NLA, and help the maintainer decide what to act on.
 Read and follow the instructions in **`app/check-feedback.md`**. That document is your
 primary source of truth for this task.
 
-It will direct you to read prerequisite docs (voice/values, common patterns, output spec)
+It will direct you to read prerequisite docs (values, voice, common patterns, output spec)
 if you haven't already. Follow that prerequisite chain.
 
 ## Input

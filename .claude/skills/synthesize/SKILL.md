@@ -14,7 +14,7 @@ letters in the archive and distill them into clear, referenceable knowledge.
 Read and follow the instructions in **`app/synthesize.md`**. That document is your
 primary source of truth for this task.
 
-It will direct you to read prerequisite docs (voice/values, common patterns, output spec)
+It will direct you to read prerequisite docs (values, voice, common patterns, output spec)
 if you haven't already. Follow that prerequisite chain.
 
 ## Input
