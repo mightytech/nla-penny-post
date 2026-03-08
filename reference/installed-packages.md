@@ -57,6 +57,19 @@ Original project generated via `/create-app` before the framework had formal pac
 
 **Notes:** Core file changes (startup friction log awareness, friction-log session awareness, maintain /think reference, validate values consistency, /unpack removal from core) propagate automatically via `../nla-framework/`. `/unpack` was never installed in this project — no action needed. Historical references to `voice-and-values.md` in `reference/feedback-log-archive.md` and `reference/sessions/` left as historical record.
 
+### Updated 2026-03-08
+
+**Package state:** db32216
+
+| Intent File | What Changed | Changes Made |
+|-------------|-------------|--------------|
+| skills-intent.md | New `/close` and `/guide` skills | Created `.claude/skills/close/SKILL.md` and `.claude/skills/guide/SKILL.md`. Added both to CLAUDE.md, `app/overview.md`, and `reference/system-status.md` skills tables. |
+| install.md | New Permissions section declaring filesystem access patterns | Added `Read(../nla-framework/**)`, `Bash(git:*)`, `Bash(ls:*)`, `Bash(test:*)` to `.claude/settings.local.json`. |
+| structure-intent.md | `settings.local.json` documented as standard structure; `overview.md` description broadened | No structural changes needed — settings file already existed; description update is minor. |
+| package-intent.md | Expanded Permissions Section documentation for package authors | No project changes needed — reference documentation for package creation. |
+
+**Notes:** Core file changes (Working Rhythms in foundations, `/close` delegation in `/maintain`, `/guide` references in `/startup` and `/maintain`, permission checks in `/validate` and `/startup`) propagate automatically via thin wrappers. README already references `/guide`. Uncommitted changes (README.md, CONTRIBUTING.md) were present at update time — rollback branch `pre-update-2026-03-08` preserves committed state only.
+
 ---
 
 <!-- /install and /update maintain this file. Each package gets a section with install

@@ -1,168 +1,134 @@
 # Penny Post
 
-A feedback conventions and skills package for NLA projects, built on the [NLA Framework](../nla-framework/).
+Conventions and skills for how Natural Language Applications evolve through
+feedback. The penny post provides structure for writing, triaging, and
+synthesizing feedback — and uses them itself.
 
-Named after the 1840 British postal reform that democratized communication — fitting for a project about democratizing software development beyond coders.
+Named after the 1840 British postal reform that made sending a letter affordable
+for everyone, not just the wealthy. This project is about making feedback
+accessible and structured, not gated and bureaucratic.
 
----
+Most users interact with the penny post from within their own NLA, where its
+skills (`/write-letter`, `/check-feedback`) work as native capabilities. You
+can also run the penny post directly to maintain the system itself or process
+feedback about it.
 
-## What It Is
+## What Is an NLA?
 
-The penny post is two things:
+A Natural Language Application is software where the runtime is an LLM and the
+source code is written in prose. The documents in `app/` aren't documentation
+about the application — they *are* the application. When behavior needs to
+change, you edit the prose. The LLM reads it and does what it says.
 
-1. **A conventions source** — suggested structure for writing, triaging, and annotating feedback, plus the skills that implement them
-2. **An NLA** — that processes its own feedback exactly the way every other NLA does
+If that sounds unusual, two paths for the curious:
 
-It's the first **NLA extension** — a capability that other NLAs install and use from within their own sessions. Most users never open the penny post directly; they interact with it through `/check-feedback` and `/write-letter` in their own NLA.
+- **Read about it:**
+  [The Documentation Is the Application](https://github.com/mightytech/nla-framework)
+  — a probe report exploring the paradigm
+- **Talk to one:**
+  [NLA Office Hours](https://github.com/mightytech/nla-office-hours) — an NLA
+  you can talk to about NLAs
 
-All feedback files (feedback log, archive) live in the NLA that receives the feedback — not in the penny post. The penny post provides conventions and skills; each NLA manages its own feedback lifecycle.
-
----
-
-## For NLA Creators: Installing Penny Post
+## Getting Started
 
 ### Prerequisites
 
-- **NLA Framework** at `../nla-framework/`
-- **Claude Code** installed
-- **GitHub CLI** (`gh`) installed and authenticated (for submitting/reading feedback via GitHub Issues)
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code)
+- The [NLA Framework](https://github.com/mightytech/nla-framework), cloned as
+  a sibling directory (see the framework README for setup)
 
-### Setup
+### Installing in your NLA
 
-1. Clone this repo as a sibling to your NLA: `../nla-penny-post/`
-2. Add skill wrappers to your NLA (see `install/skills-intent.md` for details):
+Most users add penny post as an extension to their existing NLA:
 
-```
-# .claude/skills/check-feedback/SKILL.md
-Read and follow `../nla-penny-post/app/check-feedback.md`.
+1. Clone this repo alongside your NLA and the framework:
+   ```
+   your-nla/
+   ../nla-framework/
+   ../nla-penny-post/
+   ```
+2. Add skill wrappers to your NLA's `.claude/skills/` — see
+   `install/skills-intent.md` for what's needed
+3. Optionally configure your intake channel in your NLA's `config.md`
 
-# .claude/skills/write-letter/SKILL.md
-Read and follow `../nla-penny-post/app/write-letter.md`.
-```
+Then use `/write-letter` and `/check-feedback` from your NLA's sessions.
 
-3. Optionally configure your intake channel in `config.md`
+### Running the penny post directly
 
-The `install/` directory contains the full package manifest — intent files describing what your NLA needs to integrate penny post. When a framework-level `/install` skill is available, it will automate this setup.
+Clone both repos as siblings, open the penny post directory in Claude Code,
+and run `/startup`. This is for maintaining the penny post itself or processing
+feedback about it.
 
-### Usage from Your NLA
+## Using It
 
-```
-/check-feedback          # Discover and triage new feedback
-/write-letter            # Draft and send a feedback letter
-```
+### From your NLA
 
-These run in your NLA's session with full project context. The AI evaluates feedback against your NLA's goals, practices, and documented decisions.
+Two skills are available once installed:
 
----
+- **`/write-letter`** — Draft structured feedback and submit it as a GitHub
+  Issue. Use it when you've noticed something worth sharing — a friction point,
+  an idea, a pattern. The skill asks clarifying questions and handles formatting.
+- **`/check-feedback`** — Scan for new feedback on your project, triage each
+  item with proposed verdicts, and record accepted items for implementation.
 
-## For Feedback Submitters
+You can also submit feedback as plain GitHub Issues without using the skills.
+The conventions help structure feedback, but they're suggestions, not
+requirements.
 
-The easiest way to submit feedback about an NLA is to **open a GitHub Issue** on that NLA's repo. No special tools, no forking, no understanding of penny post internals.
+### Maintaining the penny post
 
-If you're in a Claude Code session, you can also use `/write-letter` to draft well-structured feedback collaboratively with the AI.
+When running the penny post directly, you have access to the full set of
+framework skills (`/maintain`, `/validate`, `/friction-log`, etc.) plus the
+penny post's own skills for processing its own feedback.
 
----
+## How It Works
 
-## How Feedback Flows
-
-```
-Feedback submitted            Maintainer discovers          Triaged and recorded
-(GitHub Issue, etc.)    →     (/check-feedback)       →     (feedback log in NLA)
-```
-
-1. **Submit** — Anyone opens a GitHub Issue (or uses `/write-letter`)
-2. **Discover** — Maintainer runs `/check-feedback` in their NLA's session
-3. **Triage** — AI proposes verdicts with rationale; human reviews and decides
-4. **Record** — Accepted items deposited in feedback log; issue gets summary and closes
-5. **Synthesize** — When patterns emerge across feedback, `/synthesize` distills them
-
----
-
-## What's Inside
+The documents in `app/` are the application:
 
 ```
-├── CLAUDE.md                        # Runtime identity and configuration
-├── app/                             # The application (LLM reads and executes)
-│   ├── overview.md                  # What this NLA does, how pieces connect
-│   ├── shared/
-│   │   ├── values.md                # Commitments, priorities, non-negotiables
-│   │   ├── voice.md                 # Communication tone and style
-│   │   ├── common-patterns.md       # Shared processing patterns
-│   │   └── output-spec.md           # Output format
-│   ├── config-spec.md               # What users can configure
-│   ├── check-feedback.md            # Feedback discovery and triage
-│   ├── write-letter.md              # Letter drafting and submission
-│   └── synthesize.md                # Pattern synthesis
-├── install/                         # Package manifest (for NLA integration)
-│   ├── install.md                   # Orchestrator — what this package needs
-│   ├── CLAUDE-intent.md             # Intent for NLA's CLAUDE.md
-│   └── skills-intent.md             # Intent for skill wrappers
-├── config.md                        # User preferences (gitignored)
-├── reference/                       # Maintenance records
-│   ├── design-rationale.md          # Why the system is built this way
-│   ├── friction-log.md              # Learning journal (active entries)
-│   ├── friction-log-archive.md      # Resolved entries
-│   ├── feedback-log.md              # Accepted external feedback (pending)
-│   ├── feedback-log-archive.md      # Resolved feedback (searchable history)
-│   ├── installed-packages.md        # Record of installed NLA packages
-│   ├── system-status.md             # Current state snapshot
-│   └── sessions/                    # Maintenance session archives
-├── .claude/skills/                  # Skill entry points
-│   ├── check-feedback/              # Penny post skill
-│   ├── write-letter/                # Penny post skill
-│   ├── synthesize/                  # Penny post skill
-│   ├── startup/                     # Framework wrapper
-│   ├── maintain/                    # Framework wrapper
-│   ├── friction-log/                # Framework wrapper
-│   ├── validate/                    # Framework wrapper
-│   ├── preferences/                 # Framework wrapper
-│   ├── install/                     # Framework wrapper
-│   ├── update/                      # Framework wrapper
-│   ├── check-updates/               # Framework wrapper
-│   ├── export/                      # Framework wrapper
-│   ├── think/                       # Framework wrapper
-│   └── debrief/                     # Framework wrapper
-└── lib/                             # Traditional code helpers
+app/
+├── overview.md              — What the penny post does, how pieces connect
+├── shared/
+│   ├── values.md            — What it prioritizes and protects
+│   ├── voice.md             — How it communicates
+│   ├── common-patterns.md   — Shared processing patterns
+│   └── output-spec.md       — Output format conventions
+├── config-spec.md           — What users can configure
+├── write-letter.md          — Letter drafting skill
+├── check-feedback.md        — Feedback triage skill
+└── synthesize.md            — Pattern synthesis conventions
 ```
 
----
+These files define how the AI processes feedback — what verdicts to propose,
+how to annotate items, when to synthesize patterns, what values to apply. You
+can read them. They're prose.
 
-## Conventions
+If you want to understand why the penny post makes the decisions it makes,
+start with `app/shared/values.md`.
 
-The penny post suggests conventions for feedback — letter format, triage vocabulary, annotation format. These are suggestions with published reasoning, not requirements.
+## Improving It
 
-See `app/overview.md` for the conventions and `reference/design-rationale.md` for why they exist.
+The penny post improves the same way every NLA does: use it, notice friction,
+capture it, maintain.
 
----
+1. Use the system — write letters, triage feedback, synthesize patterns
+2. Notice what works and what doesn't
+3. Log observations with `/friction-log`
+4. Process them with `/maintain`
 
-## Running Penny Post Directly
+Outside contributions are welcome through observations and feedback. See
+[CONTRIBUTING.md](CONTRIBUTING.md) for how this project thinks about
+contributions — it's different from most open source.
 
-Most interaction happens from other NLAs. But when maintaining the penny post itself:
+## Getting Help
 
-1. Start Claude Code in this directory
-2. Run `/startup` to load foundational context
-3. Run `/check-feedback` to see feedback about the penny post
-4. Run `/maintain` to edit the system's own docs and conventions
-5. Use `/friction-log` to capture observations
+Ask the AI. Run `/guide` for a contextual walkthrough, or just describe what
+you're trying to do — the AI has read the documentation and can orient you.
 
----
+## Learn More
 
-## The Improvement Loop
-
-```
-Observe something → /friction-log captures it → /maintain implements changes
-```
-
-The penny post improves by improving its documentation. The friction log captures observations; maintenance sessions turn them into doc changes; the docs improve; behavior improves.
-
----
-
-## Contributing
-
-Submit feedback about the **NLA framework** by opening an issue on the framework repo.
-
-Submit feedback about the **penny post** by opening an issue on this repo.
-
----
-
-*For more about the NLA Framework, see the [framework README](../nla-framework/README.md).*
+- [NLA Framework](https://github.com/mightytech/nla-framework) — the
+  foundation that NLAs (including this one) are built on
+- [NLA Office Hours](https://github.com/mightytech/nla-office-hours) — an
+  interactive introduction to NLAs
+- [CONTRIBUTING.md](CONTRIBUTING.md) — how to contribute to this project

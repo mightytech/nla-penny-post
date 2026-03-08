@@ -83,6 +83,8 @@ Config directives are governed by `app/config-spec.md`, which defines what's con
 | `/export` | Export this NLA as a plugin for Claude Code or Cowork | When ready to distribute the NLA as a plugin |
 | `/think` | Collaborative design exploration before planning | When work involves design judgment or unfamiliar territory |
 | `/debrief` | Reflect on completed work while context is fresh | At task transitions, after substantive work |
+| `/close` | Wrap up a session — finalize session log, check loose ends, summarize state | At the end of a work session |
+| `/guide` | Context-aware help — understand how the NLA works and what to do next | When users need orientation or help |
 
 ### If the user asks about the system:
 -> Explain based on `app/overview.md`

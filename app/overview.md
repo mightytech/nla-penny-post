@@ -137,6 +137,36 @@ When running as a standalone NLA (maintaining itself), the penny post also uses 
 | `/export` | Export as a plugin for Claude Code or Cowork |
 | `/think` | Collaborative design exploration before planning |
 | `/debrief` | Reflect on completed work while context is fresh |
+| `/close` | Wrap up a session — finalize session log, check loose ends |
+| `/guide` | Context-aware help — understand how the NLA works and what to do next |
+
+---
+
+## How Users Work with This
+
+The penny post has two user contexts with different session rhythms.
+
+### As an extension (most users)
+
+Most people never open this project. They use `/write-letter` and `/check-feedback` from within their own NLA's sessions, where penny post skills feel like native capabilities. No separate startup, no context switching — the skills run in the NLA's context with the NLA's project knowledge.
+
+- **`/write-letter`** fits naturally at the end of a maintenance session or whenever observations accumulate. The user describes what they noticed; the skill structures it and submits a GitHub Issue.
+- **`/check-feedback`** runs during maintenance or on a regular cadence. It scans the NLA's intake channel, presents new items with proposed verdicts, and records accepted feedback for `/maintain` to act on.
+
+The penny post shapes these interactions through its conventions, but the NLA's own values and context drive the decisions.
+
+### As a standalone NLA (maintaining the penny post)
+
+When running the penny post directly, you're either maintaining the system or processing its own feedback. Sessions follow the standard NLA rhythm:
+
+1. **Start with `/startup`** — loads foundational context (values, patterns, conventions). The LLM starts cold; startup gives it the penny post's full perspective.
+2. **Do the work** — typically one of:
+   - **Process feedback:** `/check-feedback` on the penny post's own GitHub Issues, triage items, implement accepted changes with `/maintain`
+   - **Improve conventions:** `/maintain` to edit the docs and skills that define how feedback works across all NLAs
+   - **Develop the package:** update intent files, skill logic, or installation conventions
+3. **Wrap up with `/close`** — finalizes the session log so the next session starts warm, checks for loose ends, summarizes state.
+
+The improvement loop — use the system, notice friction, capture it with `/friction-log`, process it with `/maintain` — is the primary way the penny post evolves. External feedback (from NLAs using the penny post) and internal observations (from maintaining it) both feed this loop.
 
 ---
 

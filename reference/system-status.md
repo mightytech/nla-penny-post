@@ -6,13 +6,13 @@ Current state of the NLA system. Updated by `/maintain` at the close of maintena
 
 ## Last Updated
 
-2026-02-23 — Framework update (voice/values split, new skills)
+2026-03-08 — Framework update (new /close, /guide skills; permission management)
 
 ## System State
 
 **Overall:** Stable and current with framework. The penny post is an NLA extension
 (conventions + skills + self-maintaining NLA). Feedback files live in each NLA.
-`voice-and-values.md` split into `values.md` and `voice.md`. `boxes/` directory removed.
+Permission management configured via `.claude/settings.local.json`.
 
 ### Skills
 
@@ -39,6 +39,8 @@ Current state of the NLA system. Updated by `/maintain` at the close of maintena
 | /export | Ready | Plugin export for distribution |
 | /think | Ready | Collaborative design exploration |
 | /debrief | Ready | Post-work reflection |
+| /close | Ready | Session wrap-up and state summary |
+| /guide | Ready | Context-aware help and orientation |
 
 ### Feedback
 
@@ -49,6 +51,7 @@ Current state of the NLA system. Updated by `/maintain` at the close of maintena
 
 ### Recent Changes
 
+- Framework update: /close, /guide skills, permission management (2026-03-08)
 - Framework update: voice/values split, new skills, validation fixes (2026-02-23)
 - Triage Issues #5-8, implement accepted feedback (2026-02-23)
 - First review session: architectural reframing (2026-02-16)
