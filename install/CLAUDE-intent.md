@@ -42,7 +42,7 @@ The NLA should know:
 - Resolved items move to `reference/feedback-log-archive.md`.
 - The feedback log feeds into `/maintain` — it's the sibling of the friction log
   (internal observations vs. external feedback).
-- The penny post repo is a sibling directory at `../nla-penny-post/`.
+- The penny post is installed as a git submodule at `packages/nla-penny-post/`.
 
 ## What NOT to Change
 

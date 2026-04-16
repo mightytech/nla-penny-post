@@ -1,7 +1,7 @@
 # Maintenance Session: Packages Migration (Phase 1)
 
 **Date:** 2026-04-16
-**Status:** Phase 1 Complete (Phase 2 pending)
+**Status:** Phase 1 and Phase 2 Complete
 
 ## Intent
 
@@ -69,7 +69,12 @@ Rollback branch `pre-update-2026-04-16` captures pre-migration state.
 
 ## Friction Log Entries Processed
 
-- None this session (resolved 2026-02-23 entry remains pending archival; separate)
+- **2026-04-16 /synthesize miscategorization** — resolved (fixed in Phase 2 CLAUDE.md edit)
+- **2026-02-23 letter-to-boxes** — archived (long-resolved catch-up)
+
+## Feedback Log Entries Processed
+
+- **Issue #9 — Permissions section in install manifest** — resolved in Phase 2. Noted that the packages/ migration obviated the original `Read(../nla-penny-post/**)` recommendation; only `Bash(gh:*)` was declared.
 
 ## Debrief
 
@@ -77,18 +82,30 @@ Rollback branch `pre-update-2026-04-16` captures pre-migration state.
 
 ## State at Close
 
-**Phase 1 complete, awaiting verification and commit.** 21 files changed (including
-new `.gitmodules` and `packages/nla-framework` submodule pointer). All thin-wrapper
-targets verified to resolve. Working tree has uncommitted Phase 1 changes.
+**Phase 1 committed as `9773310`. Phase 2 complete and ready to commit.**
+
+Phase 2 changes (9 files):
+- `install/install.md` — Prerequisites now describes submodule; Permissions section added with `Bash(gh:*)` only
+- `install/skills-intent.md` — Wrapper paths and prose updated to `packages/nla-penny-post/`
+- `install/CLAUDE-intent.md` — Sibling reference updated
+- `README.md` — Installing-in-your-NLA section updated with submodule-add command and new directory tree
+- `app/overview.md` — First NLA Extension directory tree updated
+- `CLAUDE.md` — Penny Post Skills section header corrected; `/synthesize` clarified as self-maintenance skill
+- `reference/feedback-log.md` — Issue #9 removed (archived)
+- `reference/feedback-log-archive.md` — Issue #9 added with resolution
+- `reference/friction-log.md` — `/synthesize` + 2026-02-23 entries removed (archived)
+- `reference/friction-log-archive.md` — both entries added
 
 **Pending:**
-- Commit Phase 1 (recommended discrete commit before starting Phase 2)
-- Phase 2 — update penny post's own install intents (`install/install.md`,
-  `install/skills-intent.md`, `install/CLAUDE-intent.md`, `install/structure-intent.md`,
-  `install/package-intent.md`) plus the README and app/overview sections describing
-  how OTHER NLAs install penny post, so penny post ships the `packages/` convention
-- Decide fate of `app/config-spec.md`'s Framework Path option (likely obsolete)
-- Unrelated pending: feedback log has 4 items (Issues #9, #10.1, #10.2, #4.3); friction
-  log has one resolved entry awaiting archival
+- Commit Phase 2
+- Post follow-up comment on Issue #9 closing the loop
+- Unrelated pending: feedback log has 3 remaining items (Issues #10.1, #10.2, #4.3);
+  Issue #4.3 is a passive watch item
+- Deferred: `app/config-spec.md`'s Framework Path option may be functionally obsolete
+  after packages/ migration
+- Deferred: `.claude/settings.local.json` still contains symlink-related permission
+  entries from the Issue #11 retest; cleanup is separate
+- Push to origin (penny post has 2 unpushed commits after Phase 2 commit)
 
-**Rollback:** `pre-update-2026-04-16` branch captures pre-migration state.
+**Rollback:** `pre-update-2026-04-16` branch captures pre-migration state (before
+Phase 1). Phase 1 commit `9773310` preserves state between phases.

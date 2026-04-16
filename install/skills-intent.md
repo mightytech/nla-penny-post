@@ -13,13 +13,13 @@ What skill wrappers the NLA should have after installing penny post.
 **Wrapper location:** `.claude/skills/check-feedback/SKILL.md`
 
 **What the wrapper should do:** Point to the penny post's skill logic at
-`../nla-penny-post/app/check-feedback.md`. The wrapper is thin — it tells the
+`packages/nla-penny-post/app/check-feedback.md`. The wrapper is thin — it tells the
 AI to read and follow that document. The actual skill logic lives in the penny
-post repo so it stays current when the repo is pulled.
+post submodule so it stays current when the submodule is updated.
 
 **Reference implementation:**
 ```
-Read and follow `../nla-penny-post/app/check-feedback.md`.
+Read and follow `packages/nla-penny-post/app/check-feedback.md`.
 ```
 
 The NLA can add context to the wrapper (e.g., "When checking feedback, also
@@ -33,11 +33,11 @@ core delegation to the penny post's skill logic should remain.
 **Wrapper location:** `.claude/skills/write-letter/SKILL.md`
 
 **What the wrapper should do:** Point to the penny post's skill logic at
-`../nla-penny-post/app/write-letter.md`. Same thin wrapper pattern.
+`packages/nla-penny-post/app/write-letter.md`. Same thin wrapper pattern.
 
 **Reference implementation:**
 ```
-Read and follow `../nla-penny-post/app/write-letter.md`.
+Read and follow `packages/nla-penny-post/app/write-letter.md`.
 ```
 
 As with check-feedback, the NLA can add project-specific context to the wrapper.
@@ -45,9 +45,9 @@ As with check-feedback, the NLA can add project-specific context to the wrapper.
 ## Wrapper Pattern
 
 Both skills follow the NLA extension pattern: thin wrappers in the NLA that
-delegate to skill logic in a sibling repo. This means:
+delegate to skill logic in a submodule at `packages/nla-penny-post/`. This means:
 
-- Pulling the penny post repo updates the skill logic without touching the NLA.
+- Updating the penny post submodule updates the skill logic without touching the NLA.
 - The NLA can customize the wrapper with project-specific additions.
 - The skill runs in the NLA's session with full project context.
 

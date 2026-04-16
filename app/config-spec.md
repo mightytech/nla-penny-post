@@ -48,11 +48,11 @@ How /check-feedback discovers new feedback:
 
 ### Penny Post Location
 
-If the penny post is not at the standard sibling location:
+If the penny post is not at the standard submodule location:
 
-- **Local path** — Where the penny post repo is cloned
+- **Local path** — Where the penny post submodule is located
 
-**Default:** `../nla-penny-post/` (sibling directory).
+**Default:** `packages/nla-penny-post/` (git submodule).
 
 ### Framework Path
 

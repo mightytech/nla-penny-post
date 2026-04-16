@@ -67,65 +67,35 @@ Not every entry needs all fields. The essentials are: Observation, Type, Severit
 
 *Entries are added chronologically, newest first.*
 
-## 2026-04-16 — `/synthesize` miscategorized in CLAUDE.md skill table
+## 2026-04-16 — `/synthesize` self-maintenance role phrased differently in three docs
 
 **Type:** documentation
 **Severity:** minor
-**Task:** maintain (surfaced during /validate structural check)
+**Task:** maintain (surfaced during /validate architecture review)
 **Status:** pending
 
 **Observation:**
-CLAUDE.md line 69 lists `/synthesize` under "Penny Post Skills (also installed in
-other NLAs as thin wrappers)". But `install/skills-intent.md` only instructs other
-NLAs to install `/check-feedback` and `/write-letter`. `app/overview.md`'s "Skills
-Provided" section correctly lists only those two. The `/synthesize` wrapper exists
-in penny post itself for self-use.
+After Phase 2 of the packages/ migration, `/synthesize` is correctly categorized as
+penny-post-specific in three places, but each uses slightly different wording:
+- `CLAUDE.md`: "penny post's own self-maintenance skill — it operates on the penny
+  post's accumulated feedback and isn't shipped to other NLAs"
+- `app/overview.md`: "penny-post-specific, not installed in other NLAs"
+- `reference/system-status.md`: "penny-post-specific, not installed in other NLAs"
+
+**Generalizable:** no
+Specific to this one skill and this one categorization distinction.
 
 **Affected documentation:**
-`CLAUDE.md` — the Penny Post Skills table at line 63-69.
+`CLAUDE.md`, `app/overview.md`, `reference/system-status.md` — the sentences describing
+`/synthesize`'s role.
 
 **Proposed fix:**
-Options: (a) move `/synthesize` to the Framework Skills table or a third "Penny post
-self-maintenance" category, or (b) remove from CLAUDE.md's "installed in other NLAs"
-table while keeping the wrapper. Decide during Phase 2 of the packages/ migration
-since that session will also be reviewing `install/skills-intent.md` and related
-install intents.
+Settle on one canonical phrasing (e.g., the shorter "penny-post-specific, not installed
+in other NLAs" used by overview and status) and apply it uniformly. Trivial edit.
 
 **Notes:**
-Pre-existing inconsistency — surfaced during the 2026-04-16 packages/ migration
-(Phase 1) structural validation but not caused by it. Bundle with Phase 2.
-
----
-
-## 2026-02-23 — Letter delivered to boxes/ instead of GitHub Issues
-
-**Type:** process
-**Severity:** minor
-**Task:** write-letter (from framework session)
-**Status:** resolved
-**Resolved:** 2026-02-23 — Resubmitted as Issue #8. Original file removed from boxes/.
-
-**Observation:**
-A framework maintenance session (2026-02-23) drafted a letter for the penny post using
-/write-letter but saved it to `boxes/penny-post/` instead of submitting via `gh issue create`.
-The session log says "Penny post letter delivered to `boxes/penny-post/`" — the old delivery
-mechanism that was eliminated in the architectural reframing.
-
-**Confirmed reason:**
-The letter was drafted from the framework's session, not a penny post session. The framework
-AI used the pre-elimination boxes/ pattern as the delivery target. The penny post's
-write-letter.md clearly specifies GitHub Issues as the submission channel (Step 4), but the
-cross-project session didn't have the penny post's updated architecture fully loaded.
-
-**Generalizable:** partially
-This is a transition-period issue — the boxes/ directory still exists with historical files,
-making it look like a valid destination. As more sessions use the correct flow, this should
-fade. Worth watching for recurrence.
-
-**Affected documentation:**
-No penny post doc change needed — write-letter.md already specifies the correct flow. The
-framework's write-letter wrapper or the AI's understanding of cross-project delivery is
-the gap.
+Surfaced during 2026-04-16 architecture review of Phase 1+2 packages/ migration. Improve-
+class finding — low urgency. Bundle with next session that touches these files.
 
 ---
 

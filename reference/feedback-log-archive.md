@@ -12,6 +12,28 @@ Resolved feedback log entries, moved here from `feedback-log.md` during `/mainta
 
 *Archived entries in reverse chronological order.*
 
+## 2026-03-08 — Add Permissions section to penny post install manifest
+
+**Source:** [Issue #9](https://github.com/mightytech/nla-penny-post/issues/9)
+**Verdict:** Accept
+**Status:** resolved
+**Resolved:** 2026-04-16 — Added Permissions section to `install/install.md` as part of the packages/ submodule migration (Phase 2). Declared `Bash(gh:*)` only. The original triage proposed `Read(../nla-penny-post/**)` too, but the 2026-04-15 framework packages/ migration makes that unnecessary — the package now lives in-project at `packages/nla-penny-post/`, so reads are local and don't require a separate permission entry.
+
+**What to do:**
+Add a Permissions section to `install/install.md` declaring the filesystem access
+patterns that installing NLAs should pre-approve:
+- `Read(../nla-penny-post/**)` — read feedback skill logic and conventions
+- `Bash(gh:*)` — GitHub CLI for feedback intake and letter submission
+
+**Why it was accepted:**
+The framework now supports permission declarations in package manifests. Without
+them, every NLA installing penny post gets repeated Claude Code permission prompts
+on `/check-feedback` and `/write-letter`. Reported from direct experience during
+process-helpers installation. Straightforward gap — the convention exists, penny
+post just hasn't adopted it yet.
+
+---
+
 ## 2026-02-23 — Write-letter should support friction log compilation
 
 **Source:** [Issue #8](https://github.com/mightytech/nla-penny-post/issues/8)

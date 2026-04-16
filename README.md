@@ -42,14 +42,20 @@ If that sounds unusual, two paths for the curious:
 
 Most users add penny post as an extension to their existing NLA:
 
-1. Clone this repo alongside your NLA and the framework:
+1. Add penny post as a git submodule in your NLA:
+   ```
+   git submodule add --depth 1 https://github.com/mightytech/nla-penny-post.git packages/nla-penny-post
+   ```
+   Your NLA should end up with both framework and extension as submodules:
    ```
    your-nla/
-   ../nla-framework/
-   ../nla-penny-post/
+   ├── packages/
+   │   ├── nla-framework/
+   │   └── nla-penny-post/
    ```
 2. Add skill wrappers to your NLA's `.claude/skills/` — see
-   `install/skills-intent.md` for what's needed
+   `install/skills-intent.md` for what's needed. The easiest path is to run
+   `/install` in your NLA and point it at `packages/nla-penny-post/install/`.
 3. Optionally configure your intake channel in your NLA's `config.md`
 
 Then use `/write-letter` and `/check-feedback` from your NLA's sessions.

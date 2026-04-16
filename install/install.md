@@ -15,11 +15,29 @@ NLA, not in the penny post.
 
 ## Prerequisites
 
-- **NLA Framework** — The target NLA must be built on the NLA framework.
-- **This repo cloned as a sibling** — `../nla-penny-post/` relative to the NLA.
+- **NLA Framework** — The target NLA must be built on the NLA framework (expected at
+  `packages/nla-framework/`).
+- **This repo added as a submodule** at `packages/nla-penny-post/`. Thin wrapper skills
+  reference this path. Add with:
+  `git submodule add --depth 1 https://github.com/mightytech/nla-penny-post.git packages/nla-penny-post`
 - **GitHub CLI (`gh`)** installed and authenticated — Used for reading and submitting
   feedback via GitHub Issues. Run `gh auth status` to check. If not configured, run
   `gh auth login`.
+
+## Permissions
+
+Permissions the installing NLA should pre-approve in `.claude/settings.local.json`.
+`/install` reads this section and proposes entries for the target NLA's settings.
+
+| Pattern | Purpose | Required |
+|---------|---------|----------|
+| `Bash(gh:*)` | GitHub CLI for reading issues (`/check-feedback`) and submitting letters (`/write-letter`) | Yes |
+
+Penny post doesn't need `Read(packages/nla-penny-post/**)` — since the package lives
+inside the target NLA at `packages/`, reads are in-project and don't require a separate
+permission entry.
+
+No write patterns are declared. Writes to external directories stay manually approved.
 
 ## What's in This Directory
 

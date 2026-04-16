@@ -60,13 +60,15 @@ Config directives are governed by `app/config-spec.md`, which defines what's con
 
 ## Available Skills
 
-### Penny Post Skills (also installed in other NLAs as thin wrappers)
+### Penny Post Skills
 
 | Skill | Purpose | Invocation |
 |-------|---------|------------|
 | `/check-feedback` | Check for new feedback, triage it, record results | During maintenance, or on request |
 | `/write-letter` | Draft a feedback letter and submit it | End of maintenance session, or when observations accumulate |
 | `/synthesize` | Distill patterns across feedback into knowledge documents | When enough evidence accumulates on a theme |
+
+`/check-feedback` and `/write-letter` are the capabilities penny post installs in other NLAs as thin wrappers. `/synthesize` is penny post's own self-maintenance skill — it operates on the penny post's accumulated feedback and isn't shipped to other NLAs.
 
 ### Framework Skills (general NLA infrastructure)
 

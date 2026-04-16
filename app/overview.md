@@ -17,15 +17,16 @@ Named after the 1840 British postal reform that democratized communication — f
 
 For most users, the penny post is an extension installed alongside their NLA. They interact with it entirely from within their own NLA's sessions — checking feedback, triaging items, writing letters — without ever opening the penny post project directly.
 
-The penny post's skills follow the same pattern as framework skills: thin wrappers in the NLA point to actual skill logic in `../nla-penny-post/`. The NLA knows about penny post technically; the user experiences it as native capability.
+The penny post's skills follow the same pattern as framework skills: thin wrappers in the NLA point to actual skill logic in `packages/nla-penny-post/`. The NLA knows about penny post technically; the user experiences it as native capability.
 
 ```
 your-nla/
   .claude/skills/
-    write-letter/SKILL.md      → ../nla-penny-post/app/write-letter.md
-    check-feedback/SKILL.md    → ../nla-penny-post/app/check-feedback.md
-../nla-framework/              # Foundation
-../nla-penny-post/             # Extension (conventions + skills)
+    write-letter/SKILL.md      → packages/nla-penny-post/app/write-letter.md
+    check-feedback/SKILL.md    → packages/nla-penny-post/app/check-feedback.md
+  packages/
+    nla-framework/             # Foundation (submodule)
+    nla-penny-post/            # Extension (submodule — conventions + skills)
 ```
 
 ---
@@ -122,7 +123,7 @@ These are penny post skills, not framework skills. NLAs that install penny post 
 
 ### Skills for Self-Maintenance
 
-When running as a standalone NLA (maintaining itself), the penny post also uses framework skills:
+When running as a standalone NLA (maintaining itself), the penny post uses framework skills plus its own `/synthesize`:
 
 | Skill | Purpose |
 |-------|---------|
@@ -140,6 +141,7 @@ When running as a standalone NLA (maintaining itself), the penny post also uses 
 | `/session-checkpoint` | Mid-session save point — preserve state and refresh context |
 | `/close` | Wrap up a session — finalize session log, check loose ends |
 | `/guide` | Context-aware help — understand how the NLA works and what to do next |
+| `/synthesize` | Distill patterns across the penny post's accumulated feedback (penny-post-specific, not installed in other NLAs) |
 
 ---
 
@@ -187,7 +189,8 @@ See `install/install.md` for the full manifest.
 ## For Humans
 
 **To install penny post for your NLA:**
-1. Clone the penny post repo as a sibling to your NLA: `../nla-penny-post/`
+1. Add the penny post repo as a git submodule in your NLA:
+   `git submodule add --depth 1 https://github.com/mightytech/nla-penny-post.git packages/nla-penny-post`
 2. Add skill wrappers to your NLA's `.claude/skills/` (see `install/skills-intent.md` for details)
 3. Optionally configure your intake channel in your NLA's `config.md`
 

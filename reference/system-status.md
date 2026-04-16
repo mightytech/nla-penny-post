@@ -6,28 +6,26 @@ Current state of the NLA system. Updated by `/maintain` at the close of maintena
 
 ## Last Updated
 
-2026-04-16 — Framework update Phase 1 (packages/ submodule migration; /session-checkpoint skill)
+2026-04-16 — Framework update complete (packages/ submodule migration both phases; /session-checkpoint skill; Issue #9 resolved)
 
 ## System State
 
-**Overall:** Stable. Framework is now a git submodule at `packages/nla-framework/`
-(migrated from sibling `../nla-framework/` on 2026-04-16). The penny post is an NLA
+**Overall:** Stable and current with framework. Framework is a git submodule at
+`packages/nla-framework/` (migrated from sibling on 2026-04-16). Penny post's own
+install intents now describe the same convention to other NLAs — installing penny
+post produces a submodule at `packages/nla-penny-post/`. The penny post is an NLA
 extension (conventions + skills + self-maintaining NLA). Feedback files live in each
 NLA. Permission management configured via `.claude/settings.local.json`.
 
-**Update-in-progress:** Phase 2 of the packages/ migration is pending — penny post's
-own install intents (`install/*.md`) still describe the old sibling convention to NLAs
-that install it. To be addressed in a follow-up session.
-
 ### Skills
 
-#### Penny Post Skills (installed in other NLAs as thin wrappers)
+#### Penny Post Skills
 
 | Skill | Status | Notes |
 |-------|--------|-------|
-| /check-feedback | Ready | Discovers and triages feedback in NLA context |
-| /write-letter | Ready | Drafts and submits feedback letters |
-| /synthesize | Ready | Pattern synthesis across feedback |
+| /check-feedback | Ready | Discovers and triages feedback in NLA context (installed in other NLAs as thin wrappers) |
+| /write-letter | Ready | Drafts and submits feedback letters (installed in other NLAs as thin wrappers) |
+| /synthesize | Ready | Pattern synthesis across feedback — penny-post-specific, not installed in other NLAs |
 
 #### Framework Skills
 
@@ -52,12 +50,12 @@ that install it. To be addressed in a follow-up session.
 
 | File | Status | Notes |
 |------|--------|-------|
-| reference/feedback-log.md | 1 pending entry | Monitoring: feedback log + GitHub Issues sufficiency |
-| reference/feedback-log-archive.md | 9 resolved entries | Searchable history from Issues #4, #5-8 |
+| reference/feedback-log.md | 3 pending entries | Issues #10.1, #10.2 (README + CONTRIBUTING ecosystem consistency); Issue #4.3 (triage calibration watch item) |
+| reference/feedback-log-archive.md | 10 resolved entries | Searchable history from Issues #4–9 |
 
 ### Recent Changes
 
-- Framework update Phase 1: packages/ submodule migration, /session-checkpoint skill (2026-04-16)
+- Framework update: packages/ submodule migration (Phase 1 + Phase 2), /session-checkpoint skill, Issue #9 permissions resolved (2026-04-16)
 - Framework update: /close, /guide skills, permission management (2026-03-08)
 - Framework update: voice/values split, new skills, validation fixes (2026-02-23)
 - Triage Issues #5-8, implement accepted feedback (2026-02-23)
