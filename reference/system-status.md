@@ -6,13 +6,18 @@ Current state of the NLA system. Updated by `/maintain` at the close of maintena
 
 ## Last Updated
 
-2026-03-08 — Framework update (new /close, /guide skills; permission management)
+2026-04-16 — Framework update Phase 1 (packages/ submodule migration; /session-checkpoint skill)
 
 ## System State
 
-**Overall:** Stable and current with framework. The penny post is an NLA extension
-(conventions + skills + self-maintaining NLA). Feedback files live in each NLA.
-Permission management configured via `.claude/settings.local.json`.
+**Overall:** Stable. Framework is now a git submodule at `packages/nla-framework/`
+(migrated from sibling `../nla-framework/` on 2026-04-16). The penny post is an NLA
+extension (conventions + skills + self-maintaining NLA). Feedback files live in each
+NLA. Permission management configured via `.claude/settings.local.json`.
+
+**Update-in-progress:** Phase 2 of the packages/ migration is pending — penny post's
+own install intents (`install/*.md`) still describe the old sibling convention to NLAs
+that install it. To be addressed in a follow-up session.
 
 ### Skills
 
@@ -39,6 +44,7 @@ Permission management configured via `.claude/settings.local.json`.
 | /export | Ready | Plugin export for distribution |
 | /think | Ready | Collaborative design exploration |
 | /debrief | Ready | Post-work reflection |
+| /session-checkpoint | Ready | Mid-session save point for long sessions |
 | /close | Ready | Session wrap-up and state summary |
 | /guide | Ready | Context-aware help and orientation |
 
@@ -51,6 +57,7 @@ Permission management configured via `.claude/settings.local.json`.
 
 ### Recent Changes
 
+- Framework update Phase 1: packages/ submodule migration, /session-checkpoint skill (2026-04-16)
 - Framework update: /close, /guide skills, permission management (2026-03-08)
 - Framework update: voice/values split, new skills, validation fixes (2026-02-23)
 - Triage Issues #5-8, implement accepted feedback (2026-02-23)

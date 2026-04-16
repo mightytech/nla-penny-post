@@ -1,0 +1,3 @@
+[submodule "packages/nla-framework"]
+	path = packages/nla-framework
+	url = https://github.com/mightytech/nla-framework.git

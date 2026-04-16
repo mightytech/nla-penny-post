@@ -4,4 +4,4 @@ description: Validate the NLA system's internal consistency, trace scenarios thr
 disable-model-invocation: true
 ---
 
-Read and follow `../nla-framework/core/skills/validate.md`.
+Read and follow `packages/nla-framework/core/skills/validate.md`.

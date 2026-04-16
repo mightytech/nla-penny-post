@@ -9,7 +9,7 @@ Each entry records what package was installed, when, what state the package was 
 ## NLA Framework
 
 **Installed:** Pre-convention tracking (original `/create-app` generation)
-**Source:** `../nla-framework/`
+**Source:** `packages/nla-framework/` (git submodule; migrated 2026-04-16 from sibling `../nla-framework/`)
 
 Original project generated via `/create-app` before the framework had formal package tracking.
 
@@ -69,6 +69,22 @@ Original project generated via `/create-app` before the framework had formal pac
 | package-intent.md | Expanded Permissions Section documentation for package authors | No project changes needed — reference documentation for package creation. |
 
 **Notes:** Core file changes (Working Rhythms in foundations, `/close` delegation in `/maintain`, `/guide` references in `/startup` and `/maintain`, permission checks in `/validate` and `/startup`) propagate automatically via thin wrappers. README already references `/guide`. Uncommitted changes (README.md, CONTRIBUTING.md) were present at update time — rollback branch `pre-update-2026-03-08` preserves committed state only.
+
+### Updated 2026-04-16
+
+**Package state:** a754ae3 (now tracked as submodule at `packages/nla-framework/`)
+
+| Intent File | What Changed | Changes Made |
+|-------------|-------------|--------------|
+| structure-intent.md | `packages/` submodule replaces sibling directory convention | Added nla-framework as git submodule at `packages/nla-framework/`. Created `.gitmodules`. |
+| skills-intent.md | All wrapper paths changed from `../nla-framework/` to `packages/nla-framework/`; new `/session-checkpoint` skill; `/export` description updated | Rewrote 13 existing thin wrappers in `.claude/skills/` with new paths. Updated `/export` description. Created `.claude/skills/session-checkpoint/SKILL.md`. Added `/session-checkpoint` to CLAUDE.md skills table. |
+| CLAUDE-intent.md | Framework location referenced as `packages/nla-framework/` | Updated Environment section in CLAUDE.md (framework path and Key Files table). |
+| install.md | `Read(../nla-framework/**)` permission no longer needed (reads are in-project) | Removed `Read(../nla-framework/**)` from `.claude/settings.local.json`. |
+| package-intent.md | Packages convention changes affecting package authors | Deferred to Phase 2 — penny post is itself a package and its own install intents need updating to instruct other NLAs on the new `packages/` convention. |
+
+**Docs updated:** `README.md` (Prerequisites + Running directly — now reference submodule), `app/overview.md` (foundations link + document hierarchy — framework path updated; sections describing how other NLAs install penny post left for Phase 2), `app/config-spec.md` (Framework Path default updated to `packages/nla-framework/`).
+
+**Notes:** Phase 1 of packages/ migration — penny post as an installing NLA. Phase 2 (deferred) will update penny post's own install intents (`install/*.md`) so it ships the new convention to NLAs that install it, and will update the README/overview sections describing how other NLAs set up penny post. Core file changes in framework (foundational principles, coherence validation, `/export` view-source rewrite, lib/export.py) propagate automatically via the submodule. The `/session-checkpoint` core skill was promoted from facebook-moderation — thin wrapper now installed. Rollback branch `pre-update-2026-04-16` preserves pre-migration state.
 
 ---
 

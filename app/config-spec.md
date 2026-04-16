@@ -56,9 +56,9 @@ If the penny post is not at the standard sibling location:
 
 ### Framework Path
 
-If the NLA Framework is not at the standard sibling location (`../nla-framework/`), users can specify the actual path.
+If the NLA Framework is not at the standard submodule location (`packages/nla-framework/`), users can specify the actual path.
 
-**Default:** `../nla-framework/`
+**Default:** `packages/nla-framework/`
 
 ### Tracing
 

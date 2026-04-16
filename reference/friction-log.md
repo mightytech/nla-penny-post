@@ -67,6 +67,36 @@ Not every entry needs all fields. The essentials are: Observation, Type, Severit
 
 *Entries are added chronologically, newest first.*
 
+## 2026-04-16 — `/synthesize` miscategorized in CLAUDE.md skill table
+
+**Type:** documentation
+**Severity:** minor
+**Task:** maintain (surfaced during /validate structural check)
+**Status:** pending
+
+**Observation:**
+CLAUDE.md line 69 lists `/synthesize` under "Penny Post Skills (also installed in
+other NLAs as thin wrappers)". But `install/skills-intent.md` only instructs other
+NLAs to install `/check-feedback` and `/write-letter`. `app/overview.md`'s "Skills
+Provided" section correctly lists only those two. The `/synthesize` wrapper exists
+in penny post itself for self-use.
+
+**Affected documentation:**
+`CLAUDE.md` — the Penny Post Skills table at line 63-69.
+
+**Proposed fix:**
+Options: (a) move `/synthesize` to the Framework Skills table or a third "Penny post
+self-maintenance" category, or (b) remove from CLAUDE.md's "installed in other NLAs"
+table while keeping the wrapper. Decide during Phase 2 of the packages/ migration
+since that session will also be reviewing `install/skills-intent.md` and related
+install intents.
+
+**Notes:**
+Pre-existing inconsistency — surfaced during the 2026-04-16 packages/ migration
+(Phase 1) structural validation but not caused by it. Bundle with Phase 2.
+
+---
+
 ## 2026-02-23 — Letter delivered to boxes/ instead of GitHub Issues
 
 **Type:** process

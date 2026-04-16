@@ -1,6 +1,6 @@
 # System Overview
 
-This document describes what this NLA does and how its pieces fit together. For what NLAs are and the principles behind them, see [nla-foundations.md](../nla-framework/core/nla-foundations.md).
+This document describes what this NLA does and how its pieces fit together. For what NLAs are and the principles behind them, see [nla-foundations.md](../packages/nla-framework/core/nla-foundations.md).
 
 ---
 
@@ -137,6 +137,7 @@ When running as a standalone NLA (maintaining itself), the penny post also uses 
 | `/export` | Export as a plugin for Claude Code or Cowork |
 | `/think` | Collaborative design exploration before planning |
 | `/debrief` | Reflect on completed work while context is fresh |
+| `/session-checkpoint` | Mid-session save point — preserve state and refresh context |
 | `/close` | Wrap up a session — finalize session log, check loose ends |
 | `/guide` | Context-aware help — understand how the NLA works and what to do next |
 
@@ -224,7 +225,7 @@ install/
 ├── CLAUDE-intent.md                 ← Intent for NLA's CLAUDE.md
 └── skills-intent.md                 ← Intent for skill wrappers
 
-../nla-framework/core/
+packages/nla-framework/core/
 ├── nla-foundations.md               ← What NLAs are (framework)
 └── skills/                          ← Framework skill logic
 

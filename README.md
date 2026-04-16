@@ -34,8 +34,9 @@ If that sounds unusual, two paths for the curious:
 ### Prerequisites
 
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code)
-- The [NLA Framework](https://github.com/mightytech/nla-framework), cloned as
-  a sibling directory (see the framework README for setup)
+- The [NLA Framework](https://github.com/mightytech/nla-framework) — included
+  as a git submodule at `packages/nla-framework/` (cloned automatically with
+  `git submodule update --init`)
 
 ### Installing in your NLA
 
@@ -55,7 +56,8 @@ Then use `/write-letter` and `/check-feedback` from your NLA's sessions.
 
 ### Running the penny post directly
 
-Clone both repos as siblings, open the penny post directory in Claude Code,
+Clone this repo with `git clone --recurse-submodules` (or run `git submodule
+update --init` after cloning), open the penny post directory in Claude Code,
 and run `/startup`. This is for maintaining the penny post itself or processing
 feedback about it.
 

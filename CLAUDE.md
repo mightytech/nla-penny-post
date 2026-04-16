@@ -83,6 +83,7 @@ Config directives are governed by `app/config-spec.md`, which defines what's con
 | `/export` | Export this NLA as a plugin for Claude Code or Cowork | When ready to distribute the NLA as a plugin |
 | `/think` | Collaborative design exploration before planning | When work involves design judgment or unfamiliar territory |
 | `/debrief` | Reflect on completed work while context is fresh | At task transitions, after substantive work |
+| `/session-checkpoint` | Mid-session save point — preserve state and refresh context | Between work phases or before reasoning from files read long ago |
 | `/close` | Wrap up a session — finalize session log, check loose ends, summarize state | At the end of a work session |
 | `/guide` | Context-aware help — understand how the NLA works and what to do next | When users need orientation or help |
 
@@ -119,7 +120,7 @@ A well-reasoned response is always better than a fast one. Record why, not just 
 
 ## Environment
 
-This project uses the NLA Framework at `../nla-framework/`. If your framework is elsewhere, update the skill wrappers in `.claude/skills/`.
+This project uses the NLA Framework as a git submodule at `packages/nla-framework/`. Thin wrappers in `.claude/skills/` delegate to `packages/nla-framework/core/skills/`.
 
 ### Key Files
 
@@ -129,7 +130,7 @@ This project uses the NLA Framework at `../nla-framework/`. If your framework is
 | `app/config-spec.md` | What's configurable and how (developer-defined) |
 | `config.md` | User preferences (gitignored) |
 | `reference/` | Design rationale, friction log, session archives |
-| `../nla-framework/core/` | Framework foundations and skill logic |
+| `packages/nla-framework/core/` | Framework foundations and skill logic |
 | `lib/` | Traditional code helpers |
 
 ---
