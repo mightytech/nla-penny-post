@@ -1,7 +1,7 @@
 # Maintenance Session: Packages Migration (Phase 1)
 
 **Date:** 2026-04-16
-**Status:** Phase 1 and Phase 2 Complete
+**Status:** Complete
 
 ## Intent
 
@@ -78,34 +78,91 @@ Rollback branch `pre-update-2026-04-16` captures pre-migration state.
 
 ## Debrief
 
-- [captured at /close]
+Refined conclusions from the `/debrief` conversation:
+
+- **Validate mode selection should be offered, not defaulted.** I ran structural
+  validation by default and only reached architecture + coherence when the
+  maintainer prompted twice. For update-scale work (which touches intent files
+  and cross-references), architecture review is the mode that matches the
+  territory. Framework-feedback material — `/update`'s closing step could
+  suggest appropriate validation modes based on what the update touched, not
+  just "run structural."
+
+- **Two-phase migration with mid-point checkpoint was the right pattern.** The
+  maintainer's suggestion to split into Phase 1 (penny post as installing NLA)
+  and Phase 2 (penny post as package), with verify-and-commit between, was
+  cleaner than bundling. Worth preserving as a pattern: when work has dual-hat
+  concerns, phase-with-checkpoint beats bundle.
+
+- **Tagging wasn't proactively suggested.** After Phase 2 commit, the maintainer
+  prompted "we should probably create a tag." `/update`'s own docs describe the
+  tag-vs-HEAD choice in its fetch logic, but nothing in `/update`'s closing step
+  suggests tagging when an update represents a stable milestone. Framework-
+  feedback material.
+
+- **Architecture review caught what structural couldn't.** Structural check
+  found the `/synthesize` surface symptom (table mismatch between CLAUDE.md and
+  overview). Architecture review would have caught the deeper consistency
+  issue (how `/synthesize` is described across three files). Both have value,
+  but structural tests mechanics while architecture tests design.
+
+- **CWD spot-check before push was healthy.** The maintainer paused to verify
+  working directory before the consequential push action. Good pre-flight
+  instinct; no issue to fix, worth noting as a pattern for maintainers working
+  across multiple related projects.
+
+The Shippability distinction (framework-internal vs consumer-facing content)
+emerged during the letter-drafting conversation and became [nla-framework#22](https://github.com/mightytech/nla-framework/issues/22).
+That insight didn't exist at the start of the session — it came from the
+back-and-forth of trying to explain the cross-reference annoyance cleanly.
 
 ## State at Close
 
-**Phase 1 committed as `9773310`. Phase 2 complete and ready to commit.**
+### Context for next time
 
-Phase 2 changes (9 files):
-- `install/install.md` — Prerequisites now describes submodule; Permissions section added with `Bash(gh:*)` only
-- `install/skills-intent.md` — Wrapper paths and prose updated to `packages/nla-penny-post/`
-- `install/CLAUDE-intent.md` — Sibling reference updated
-- `README.md` — Installing-in-your-NLA section updated with submodule-add command and new directory tree
-- `app/overview.md` — First NLA Extension directory tree updated
-- `CLAUDE.md` — Penny Post Skills section header corrected; `/synthesize` clarified as self-maintenance skill
-- `reference/feedback-log.md` — Issue #9 removed (archived)
-- `reference/feedback-log-archive.md` — Issue #9 added with resolution
-- `reference/friction-log.md` — `/synthesize` + 2026-02-23 entries removed (archived)
-- `reference/friction-log-archive.md` — both entries added
+- **Penny post v0.0.1 is released** (tag at commit `1ef501e`, pushed to origin).
+  This is penny post's first tagged release — aligned with framework's
+  `packages/` submodule convention.
+- **Framework is a submodule at `packages/nla-framework/` pinned at `a754ae3c`.**
+  The sibling `../nla-framework/` still exists at the OS level but penny post
+  no longer references it.
+- **Origin remote switched to SSH alias** (`github-mightytech:`) during the
+  session, matching the framework's convention.
+- **Rollback branch `pre-update-2026-04-16`** preserves pre-migration state if
+  needed.
+- **Shippability question outstanding upstream** — see
+  [nla-framework#22](https://github.com/mightytech/nla-framework/issues/22).
+  When the framework codifies the consumer-facing vs framework-internal
+  distinction, penny post may need to apply the same convention to its own
+  commits.
 
-**Pending:**
-- Commit Phase 2
-- Post follow-up comment on Issue #9 closing the loop
-- Unrelated pending: feedback log has 3 remaining items (Issues #10.1, #10.2, #4.3);
-  Issue #4.3 is a passive watch item
-- Deferred: `app/config-spec.md`'s Framework Path option may be functionally obsolete
-  after packages/ migration
-- Deferred: `.claude/settings.local.json` still contains symlink-related permission
-  entries from the Issue #11 retest; cleanup is separate
-- Push to origin (penny post has 2 unpushed commits after Phase 2 commit)
+### Decisions awaiting implementation
 
-**Rollback:** `pre-update-2026-04-16` branch captures pre-migration state (before
-Phase 1). Phase 1 commit `9773310` preserves state between phases.
+- **Cleanup of `.claude/settings.local.json`** — the `dependencies/` symlink-
+  related permission entries from the Issue #11 retest are now dead
+  (`mkdir -p dependencies`, two `ln -s ...` entries). Safe to remove. Left in
+  place because cleanup is unrelated to the migration.
+- **Fate of `app/config-spec.md`'s Framework Path option** — with submodules,
+  the framework path is effectively fixed at `packages/nla-framework/`. The
+  config option may be functionally dead but wasn't removed in Phase 1 to avoid
+  scope creep. Worth a deliberate decision in a future session.
+
+### Pending items (unrelated to this session)
+
+- **Feedback log**: Issue #10.1 (README "What Is an NLA?" paragraph),
+  Issue #10.2 (CONTRIBUTING blast radius), Issue #4.3 (triage calibration
+  watch item — passive monitoring).
+- **Friction log**: `/synthesize` wording variance (improve-class, pending)
+  from 2026-04-16 architecture review.
+
+### Where to pick up
+
+Three natural starting points:
+1. **Apply to framework** — do the framework-side packages/ migration (update
+   its references to penny post and process-helpers). That's the task the
+   letter to [nla-framework#22](https://github.com/mightytech/nla-framework/issues/22)
+   anticipates; the shippability convention question is downstream of it.
+2. **Process remaining feedback items** — Issues #10.1/#10.2 are straightforward
+   README/CONTRIBUTING edits that don't depend on anything else.
+3. **Cleanup** — `settings.local.json` dead entries, config-spec Framework Path
+   decision.
